@@ -1,0 +1,18 @@
+{
+  "selected_on": "validation",
+  "selected_keep": 100,
+  "mmr_lambda": 0.9,
+  "guardrails": {
+    "max_ndcg20_relative_drop": 0.05,
+    "max_recall20_absolute_drop": 0.005
+  },
+  "tested_keeps": [
+    100,
+    150,
+    200,
+    300
+  ],
+  "selection_policy": "smallest eligible keep; fallback 500",
+  "test_used_for_selection": false,
+  "seed": 42
+}

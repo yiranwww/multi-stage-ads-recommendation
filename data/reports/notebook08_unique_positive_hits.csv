@@ -1,0 +1,13 @@
+split,source,positive_hits,exclusive_positive_hits
+train,cf,942,236
+train,faiss,467,83
+train,category,1521,764
+train,popularity,277,133
+validation,cf,788,194
+validation,faiss,351,73
+validation,category,1408,725
+validation,popularity,331,152
+test,cf,671,152
+test,faiss,338,61
+test,category,1315,702
+test,popularity,263,89

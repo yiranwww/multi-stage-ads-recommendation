@@ -1,0 +1,69 @@
+{
+  "source": "Notebook 02 point-in-time tables; all four original CSVs contribute through these tables",
+  "property_category_rows": 788214,
+  "category_hierarchy": {
+    "nodes": 1669,
+    "roots": 25,
+    "max_depth": 5,
+    "cycle_check": "passed"
+  },
+  "example_category_coverage": [
+    {
+      "split": "train",
+      "examples": 37448,
+      "categorized_examples": 35236,
+      "unique_items": 7618,
+      "categorized_items": 6892,
+      "example_category_fraction": 0.9409314249092074,
+      "unique_item_category_fraction": 0.9046993961669729
+    },
+    {
+      "split": "validation",
+      "examples": 36080,
+      "categorized_examples": 34095,
+      "unique_items": 7406,
+      "categorized_items": 6904,
+      "example_category_fraction": 0.9449833702882483,
+      "unique_item_category_fraction": 0.9322171212530381
+    },
+    {
+      "split": "test",
+      "examples": 32856,
+      "categorized_examples": 30811,
+      "unique_items": 6867,
+      "categorized_items": 6224,
+      "example_category_fraction": 0.9377587046505965,
+      "unique_item_category_fraction": 0.9063637687490899
+    }
+  ],
+  "splits": {
+    "train": {
+      "examples": 37448,
+      "positives": 9362,
+      "unique_pairs": 37448,
+      "cutoff_ts": 1438372073596,
+      "future_property_rows_excluded_by_snapshot_logic": 529315
+    },
+    "validation": {
+      "examples": 36080,
+      "positives": 9020,
+      "unique_pairs": 36080,
+      "cutoff_ts": 1439922087439,
+      "future_property_rows_excluded_by_snapshot_logic": 571339
+    },
+    "test": {
+      "examples": 32856,
+      "positives": 8214,
+      "unique_pairs": 32856,
+      "cutoff_ts": 1441352869447,
+      "future_property_rows_excluded_by_snapshot_logic": 566183
+    }
+  },
+  "limitations": [
+    "Properties used here: categoryid and count of known property names; additional property values reserved for feature ablation.",
+    "Coverage for all event items from Notebook 02 is not point-in-time coverage.",
+    "Sampled weak negatives are not impression-level negatives.",
+    "Notebook 02 uses one cutoff per split and capped positive pairs.",
+    "Offline ranking evaluation needs retrieval-generated candidate sets."
+  ]
+}

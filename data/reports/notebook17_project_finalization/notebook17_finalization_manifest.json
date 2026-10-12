@@ -1,0 +1,33 @@
+{
+  "notebook": 17,
+  "source_report_notebooks": [
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16
+  ],
+  "selected_keep": 100,
+  "source": "saved offline JSON reports",
+  "outputs": [
+    "README.md",
+    "architecture.mmd",
+    "interview_preparation.md",
+    "experiment_quality_summary.csv",
+    "validation_cascade_tradeoff.csv",
+    "test_cascade_comparison.csv",
+    "serving_latency_summary.csv",
+    "quality_comparison.png",
+    "validation_tradeoff.png",
+    "http_latency_comparison.png"
+  ],
+  "note": "Documentation only; no model training or new evaluation"
+}

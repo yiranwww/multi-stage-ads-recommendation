@@ -1,0 +1,4 @@
+split,pool,candidate_pairs,unique_items,hits,eligible_positive_pairs,oracle_union_recall
+train,four_primary_sources_unranked,1481376,60454,2049,9362,0.21886349070711386
+validation,four_primary_sources_unranked,1301291,57668,1888,9020,0.20931263858093127
+test,four_primary_sources_unranked,1261226,54976,1679,8214,0.20440710981251523

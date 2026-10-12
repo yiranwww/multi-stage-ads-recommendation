@@ -1,0 +1,12 @@
+# Use existing Conda torch environment and existing LightGBM / CUDA torch versions.
+numpy
+pandas
+pyarrow
+duckdb
+lightgbm
+torch
+fastapi
+uvicorn
+httpx
+matplotlib
+ipykernel

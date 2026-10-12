@@ -1,0 +1,226 @@
+{
+  "notebook": "12_class_imbalance_probability_calibration",
+  "seed": 42,
+  "device": "cuda",
+  "partition": {
+    "method": "user-disjoint ordered by last pre-cutoff validation interaction",
+    "tuning_users": 1828,
+    "calibration_users": 1829,
+    "cal_fit_users": 1097,
+    "cal_check_users": 732,
+    "strict_prospective_temporal_split": false,
+    "upstream_models_selected_on_full_validation": true
+  },
+  "ablation": {
+    "enabled": true,
+    "configurations": [
+      [
+        "sample_60_weight_1",
+        60,
+        1.0
+      ],
+      [
+        "sample_60_weight_3",
+        60,
+        3.0
+      ],
+      [
+        "sample_30_weight_1",
+        30,
+        1.0
+      ],
+      [
+        "sample_120_weight_1",
+        120,
+        1.0
+      ]
+    ],
+    "results": [
+      {
+        "variant": "sample_60_weight_1",
+        "negative_per_positive": 60,
+        "pos_weight": 1.0,
+        "train_rows": 180836,
+        "sampled_positive_rate": 0.01178415771573782,
+        "best_epoch": 7,
+        "tuning_ndcg20": 0.03667674857318073,
+        "seconds": 30.21
+      },
+      {
+        "variant": "sample_60_weight_3",
+        "negative_per_positive": 60,
+        "pos_weight": 3.0,
+        "train_rows": 180836,
+        "sampled_positive_rate": 0.01178415771573782,
+        "best_epoch": 7,
+        "tuning_ndcg20": 0.038201940766051795,
+        "seconds": 27.75
+      },
+      {
+        "variant": "sample_30_weight_1",
+        "negative_per_positive": 30,
+        "pos_weight": 1.0,
+        "train_rows": 121132,
+        "sampled_positive_rate": 0.017592377960681915,
+        "best_epoch": 8,
+        "tuning_ndcg20": 0.03571835764748295,
+        "seconds": 19.19
+      },
+      {
+        "variant": "sample_120_weight_1",
+        "negative_per_positive": 120,
+        "pos_weight": 1.0,
+        "train_rows": 288962,
+        "sampled_positive_rate": 0.007374672219157219,
+        "best_epoch": 8,
+        "tuning_ndcg20": 0.036177837070981884,
+        "seconds": 39.16
+      }
+    ]
+  },
+  "calibration": {
+    "selection_metric": "cal_check Brier score",
+    "selected": {
+      "lightgbm_binary": "uncalibrated",
+      "deepfm": "isotonic"
+    },
+    "trials": [
+      {
+        "source": "lightgbm_binary",
+        "calibrator": "uncalibrated",
+        "subset": "cal_check",
+        "brier": 0.0019873734801634127,
+        "logloss": 0.012583055864558575,
+        "ece": 0.001003153456669958,
+        "pr_auc": 0.027765491620284286,
+        "positive_rate": 0.0020136612021857923
+      },
+      {
+        "source": "lightgbm_binary",
+        "calibrator": "platt",
+        "subset": "cal_check",
+        "brier": 0.0020104555504331205,
+        "logloss": 0.014822923093386262,
+        "ece": 0.0019459098008674043,
+        "pr_auc": 0.027765491620284286,
+        "positive_rate": 0.0020136612021857923
+      },
+      {
+        "source": "lightgbm_binary",
+        "calibrator": "isotonic",
+        "subset": "cal_check",
+        "brier": 0.0019901770277385516,
+        "logloss": 0.012395404027351968,
+        "ece": 0.0004633959946863151,
+        "pr_auc": 0.022379570612395545,
+        "positive_rate": 0.0020136612021857923
+      },
+      {
+        "source": "deepfm",
+        "calibrator": "uncalibrated",
+        "subset": "cal_check",
+        "brier": 0.0024785034913900814,
+        "logloss": 0.01811662343561462,
+        "ece": 0.00901020010849797,
+        "pr_auc": 0.026491266878369068,
+        "positive_rate": 0.0020136612021857923
+      },
+      {
+        "source": "deepfm",
+        "calibrator": "platt",
+        "subset": "cal_check",
+        "brier": 0.001989210809191269,
+        "logloss": 0.012453071111386252,
+        "ece": 0.0008124027813585162,
+        "pr_auc": 0.026491266878369068,
+        "positive_rate": 0.0020136612021857923
+      },
+      {
+        "source": "deepfm",
+        "calibrator": "isotonic",
+        "subset": "cal_check",
+        "brier": 0.0019874765199929547,
+        "logloss": 0.01247569082963033,
+        "ece": 0.0008142584152777494,
+        "pr_auc": 0.024007673636794534,
+        "positive_rate": 0.0020136612021857923
+      }
+    ]
+  },
+  "test": {
+    "used_for_selection_or_fitting": false,
+    "metrics": [
+      {
+        "source": "lightgbm_binary",
+        "variant": "uncalibrated",
+        "calibrator": "none",
+        "brier": 0.0009913825049106292,
+        "logloss": 0.006911324113200845,
+        "ece": 0.0003719871265562631,
+        "pr_auc": 0.014597357781318562,
+        "positive_rate": 0.0009994400895856662
+      },
+      {
+        "source": "lightgbm_binary",
+        "variant": "selected_calibration",
+        "calibrator": "uncalibrated",
+        "brier": 0.0009913825049106292,
+        "logloss": 0.006911324113200845,
+        "ece": 0.0003719871265562631,
+        "pr_auc": 0.014597357781318562,
+        "positive_rate": 0.0009994400895856662
+      },
+      {
+        "source": "deepfm",
+        "variant": "uncalibrated",
+        "calibrator": "none",
+        "brier": 0.001346605959044503,
+        "logloss": 0.011703283440859212,
+        "ece": 0.0066651138979278626,
+        "pr_auc": 0.015455959206511596,
+        "positive_rate": 0.0009994400895856662
+      },
+      {
+        "source": "deepfm",
+        "variant": "selected_calibration",
+        "calibrator": "isotonic",
+        "brier": 0.0009914993863547555,
+        "logloss": 0.006888529782560435,
+        "ece": 0.0001731626190412876,
+        "pr_auc": 0.014054318020110992,
+        "positive_rate": 0.0009994400895856662
+      }
+    ]
+  },
+  "prediction_exports": [
+    {
+      "source": "lightgbm_binary",
+      "path": "test_notebook12_lightgbm_binary_calibrated_top500.parquet",
+      "rows": 1786000
+    },
+    {
+      "source": "deepfm",
+      "path": "test_notebook12_deepfm_calibrated_top500.parquet",
+      "rows": 1786000
+    }
+  ],
+  "outputs": {
+    "ablation_csv": "notebook12_imbalance_ablation.csv",
+    "calibration_csv": "notebook12_calibration_trials.csv",
+    "test_csv": "notebook12_test_calibration_metrics.csv",
+    "reliability_csv": "notebook12_reliability_bins.csv",
+    "validation_partition_csv": "notebook12_validation_partition.csv",
+    "plots": [
+      "notebook12_reliability_lightgbm_binary.png",
+      "notebook12_reliability_deepfm.png"
+    ]
+  },
+  "limitations": [
+    "No impression logs; predicted probabilities are not CTR or CVR",
+    "Validation partition ordered by last user activity, not truly prospective target periods",
+    "Notebook10/11 models were previously selected on entire validation set; cal_check is not fully independent of upstream model selection",
+    "Weak negatives, candidate-conditioning and sampled DeepFM training affect probability meaning",
+    "Isotonic may create ties; calibration does not aim to improve ranking",
+    "Ablation models are not used to select frozen calibration source"
+  ]
+}

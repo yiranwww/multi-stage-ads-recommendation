@@ -1,0 +1,166 @@
+{
+  "notebook": "09_feature_engineering",
+  "inputs": "Notebook 08 fused top500; Notebook 02/03 split PIT tables; four original CSV lineage",
+  "point_in_time_rule": "all features as of split cutoff; future 7d interactions used only as labels",
+  "event_level_pit": false,
+  "source_files": [
+    "events.csv",
+    "item_properties_part1.csv",
+    "item_properties_part2.csv",
+    "category_tree.csv"
+  ],
+  "checks": [
+    {
+      "split": "train",
+      "rows": 2055000,
+      "users": 4110,
+      "positives": 2131,
+      "positive_rate": 0.0010369829683698297,
+      "duplicate_pairs": 0,
+      "seen_item_leakage": 0,
+      "label_mismatch": 0,
+      "time_feature_errors": 0,
+      "future_events_in_features": 0,
+      "future_properties_in_features": 0,
+      "invalid_user_rank_groups": 0
+    },
+    {
+      "split": "validation",
+      "rows": 1828500,
+      "users": 3657,
+      "positives": 1996,
+      "positive_rate": 0.0010916051408258135,
+      "duplicate_pairs": 0,
+      "seen_item_leakage": 0,
+      "label_mismatch": 0,
+      "time_feature_errors": 0,
+      "future_events_in_features": 0,
+      "future_properties_in_features": 0,
+      "invalid_user_rank_groups": 0
+    },
+    {
+      "split": "test",
+      "rows": 1786000,
+      "users": 3572,
+      "positives": 1785,
+      "positive_rate": 0.0009994400895856662,
+      "duplicate_pairs": 0,
+      "seen_item_leakage": 0,
+      "label_mismatch": 0,
+      "time_feature_errors": 0,
+      "future_events_in_features": 0,
+      "future_properties_in_features": 0,
+      "invalid_user_rank_groups": 0
+    }
+  ],
+  "feature_count": 57,
+  "feature_groups": {
+    "retrieval": [
+      "retrieval_rank",
+      "rrf_score",
+      "source_count",
+      "from_popularity",
+      "from_cf",
+      "from_faiss",
+      "from_category",
+      "is_fallback",
+      "popularity_rank",
+      "popularity_score",
+      "cf_rank",
+      "cf_score",
+      "faiss_rank",
+      "faiss_score",
+      "category_rank",
+      "category_score"
+    ],
+    "user": [
+      "user_events_30d",
+      "user_unique_items_30d",
+      "user_events_7d",
+      "user_events_1d",
+      "user_views_30d",
+      "user_carts_30d",
+      "user_purchases_30d",
+      "user_views_7d",
+      "user_carts_7d",
+      "user_purchases_7d",
+      "user_recency_days",
+      "user_purchase_to_view_ratio"
+    ],
+    "item": [
+      "item_events_30d",
+      "item_users_30d",
+      "item_events_7d",
+      "item_events_1d",
+      "item_views_30d",
+      "item_carts_30d",
+      "item_purchases_30d",
+      "item_views_7d",
+      "item_purchases_7d",
+      "item_recency_days",
+      "item_cart_to_view_ratio",
+      "item_purchase_to_view_ratio"
+    ],
+    "user_item": [
+      "ui_events_30d",
+      "ui_views_30d",
+      "ui_recency_days"
+    ],
+    "category": [
+      "from_category",
+      "category_rank",
+      "category_score",
+      "category_id",
+      "parent_category_id",
+      "root_category_id",
+      "category_depth",
+      "missing_category",
+      "user_category_30d_events",
+      "user_category_30d_items",
+      "category_30d_events",
+      "user_category_affinity"
+    ],
+    "property": [
+      "known_property_count",
+      "missing_properties",
+      "missing_property_timestamp",
+      "days_since_property_update",
+      "property_distinct_keys_historical"
+    ],
+    "temporal": [
+      "user_recency_days",
+      "item_recency_days",
+      "ui_recency_days",
+      "days_since_property_update"
+    ]
+  },
+  "categorical_features": [
+    "category_id",
+    "parent_category_id",
+    "root_category_id"
+  ],
+  "exports": [
+    {
+      "split": "train",
+      "path": "train_ranking_features_top500.parquet",
+      "size_mb": 37.03
+    },
+    {
+      "split": "validation",
+      "path": "validation_ranking_features_top500.parquet",
+      "size_mb": 32.56
+    },
+    {
+      "split": "test",
+      "path": "test_ranking_features_top500.parquet",
+      "size_mb": 31.94
+    }
+  ],
+  "limitations": [
+    "All non-positive candidate pairs are weak negatives; no impression logs",
+    "No per-event historical category join; category snapshot is at split cutoff",
+    "Feature rank/score provenance depends on pre-cutoff notebooks 04\u201308",
+    "Do not tune using test split; train on train and select on validation",
+    "Future positives denominator includes only eligible positives, not all future events"
+  ]
+}

@@ -1,0 +1,20 @@
+flowchart TD
+    A["RetailRocket implicit events<br/>views / add-to-cart / transactions"] --> B["Time-based train / validation / test split"]
+    B --> C["Offline user/item/category features"]
+    B --> D1["Popularity"]
+    B --> D2["ItemCF"]
+    B --> D3["SVD embeddings + FAISS"]
+    C --> D4["Category-aware retrieval"]
+    D1 --> E["Weighted RRF Fusion<br/>Top 500 candidates"]
+    D2 --> E
+    D3 --> E
+    D4 --> E
+    E --> F["LightGBM pre-ranker<br/>Top 500 → Top 100"]
+    C --> F
+    F --> G["DeepFM fine-ranker<br/>100 candidates"]
+    C --> G
+    G --> H["MMR re-ranking<br/>lambda = 0.9"]
+    H --> I["FastAPI /recommend<br/>Top 20"]
+    B --> J["Offline Recall / NDCG<br/>ILD / Coverage"]
+    I --> K["Parity audit + local HTTP latency"]
+    I -. "Not implemented" .-> L["Live event retrieval / feature store"]

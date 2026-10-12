@@ -1,0 +1,6 @@
+check,status,expected,passed
+health,200,200,True
+missing_user_id,422,422,True
+invalid_k_zero,422,422,True
+invalid_k_over_100,422,422,True
+unknown_user,404,404,True

@@ -1,0 +1,11 @@
+data/raw/
+data/processed/
+models/
+__pycache__/
+**/__pycache__/
+.ipynb_checkpoints/
+*.py[cod]
+*.duckdb
+*.duckdb-wal
+*.duckdb-shm
+*.zip

@@ -1,0 +1,13 @@
+split,method,table,evaluation_users,nonzero_embedding_users,covered_users,user_coverage,candidate_rows,users_with_fewer_than_100_candidates,search_k,query_and_filter_seconds,query_ms_per_evaluation_user_amortized,candidates_path
+train,faiss_flat,train_faiss_flat_candidates,4110,3285,3285,0.7992700729927007,328500,0,1687,1.007565699999759,0.24514980535273945,train_faiss_flat_top100.parquet
+train,faiss_ivf_np4,train_faiss_ivf_np4_candidates,4110,3285,3285,0.7992700729927007,328500,0,1687,0.6813387000001967,0.16577583941610624,train_faiss_ivf_np4_top100.parquet
+train,faiss_ivf_np16,train_faiss_ivf_np16_candidates,4110,3285,3285,0.7992700729927007,328500,0,1687,0.703290499999639,0.17111690997558127,train_faiss_ivf_np16_top100.parquet
+train,faiss_ivf_np64,train_faiss_ivf_np64_candidates,4110,3285,3285,0.7992700729927007,328500,0,1687,0.7697952999997142,0.18729812652061173,train_faiss_ivf_np64_top100.parquet
+validation,faiss_flat,validation_faiss_flat_candidates,3657,2890,2890,0.7902652447361225,289000,0,1720,0.8710021999995661,0.23817396773299593,validation_faiss_flat_top100.parquet
+validation,faiss_ivf_np4,validation_faiss_ivf_np4_candidates,3657,2890,2890,0.7902652447361225,289000,0,1720,0.5581910999999309,0.1526363412633117,validation_faiss_ivf_np4_top100.parquet
+validation,faiss_ivf_np16,validation_faiss_ivf_np16_candidates,3657,2890,2890,0.7902652447361225,289000,0,1720,0.6361473000006299,0.1739533223955783,validation_faiss_ivf_np16_top100.parquet
+validation,faiss_ivf_np64,validation_faiss_ivf_np64_candidates,3657,2890,2890,0.7902652447361225,289000,0,1720,0.684253099999296,0.18710776592816405,validation_faiss_ivf_np64_top100.parquet
+test,faiss_flat,test_faiss_flat_candidates,3572,2858,2858,0.8001119820828667,285800,0,1126,0.7630956000002698,0.21363258678618974,test_faiss_flat_top100.parquet
+test,faiss_ivf_np4,test_faiss_ivf_np4_candidates,3572,2858,2858,0.8001119820828667,285800,0,1126,0.5593641999994361,0.1565969204925633,test_faiss_ivf_np4_top100.parquet
+test,faiss_ivf_np16,test_faiss_ivf_np16_candidates,3572,2858,2858,0.8001119820828667,285800,0,1126,0.5867786999997406,0.16427175251952425,test_faiss_ivf_np16_top100.parquet
+test,faiss_ivf_np64,test_faiss_ivf_np64_candidates,3572,2858,2858,0.8001119820828667,285800,0,1126,0.6277119999995193,0.17573124300098525,test_faiss_ivf_np64_top100.parquet

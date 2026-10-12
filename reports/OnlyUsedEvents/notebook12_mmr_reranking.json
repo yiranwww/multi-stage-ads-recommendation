@@ -1,0 +1,156 @@
+{
+  "method": "DeepFM MMR diversity re-ranking using split-specific Item2Vec cosine similarity",
+  "protocol": "August holdout lambda selection; September test once; fixed Notebook08 Top-100 pool",
+  "lambda_grid": [
+    1.0,
+    0.9,
+    0.8,
+    0.7,
+    0.5
+  ],
+  "selected_lambda": 0.9,
+  "selection_rule": "maximize known-pair ILD subject to holdout Recall@10 >= 99% of DeepFM baseline",
+  "holdout_lambda_sweep": [
+    {
+      "lambda": 1.0,
+      "IntraListDiversity_known_pairs": 0.2611031021,
+      "known_pair_fraction": 0.9539134784,
+      "mean_embedded_items_at_10": 9.7471867967,
+      "Recall_at_10": 0.0341913177,
+      "Recall_at_20": 0.0455243949,
+      "Recall_at_50": 0.0620437956,
+      "Recall_at_100": 0.0722243565,
+      "HitRate_at_10": 0.0573893473,
+      "Coverage_at_10": 0.0600834297
+    },
+    {
+      "lambda": 0.9,
+      "IntraListDiversity_known_pairs": 0.2740472048,
+      "known_pair_fraction": 0.9027673585,
+      "mean_embedded_items_at_10": 9.4411102776,
+      "Recall_at_10": 0.0343834038,
+      "Recall_at_20": 0.045716481,
+      "Recall_at_50": 0.0620437956,
+      "Recall_at_100": 0.0722243565,
+      "HitRate_at_10": 0.0581395349,
+      "Coverage_at_10": 0.0612452363
+    },
+    {
+      "lambda": 0.8,
+      "IntraListDiversity_known_pairs": 0.297003982,
+      "known_pair_fraction": 0.7874885388,
+      "mean_embedded_items_at_10": 8.7198049512,
+      "Recall_at_10": 0.0336150595,
+      "Recall_at_20": 0.0455243949,
+      "Recall_at_50": 0.0620437956,
+      "Recall_at_100": 0.0722243565,
+      "HitRate_at_10": 0.0570142536,
+      "Coverage_at_10": 0.064239893
+    },
+    {
+      "lambda": 0.7,
+      "IntraListDiversity_known_pairs": 0.3564411636,
+      "known_pair_fraction": 0.561098608,
+      "mean_embedded_items_at_10": 7.1132783196,
+      "Recall_at_10": 0.0290049942,
+      "Recall_at_20": 0.0436035344,
+      "Recall_at_50": 0.0622358817,
+      "Recall_at_100": 0.0722243565,
+      "HitRate_at_10": 0.0510127532,
+      "Coverage_at_10": 0.0689422051
+    },
+    {
+      "lambda": 0.5,
+      "IntraListDiversity_known_pairs": 0.514515349,
+      "known_pair_fraction": 0.3128615487,
+      "mean_embedded_items_at_10": 4.4024756189,
+      "Recall_at_10": 0.014022282,
+      "Recall_at_20": 0.0395697272,
+      "Recall_at_50": 0.0610833653,
+      "Recall_at_100": 0.0722243565,
+      "HitRate_at_10": 0.0255063766,
+      "Coverage_at_10": 0.0764639014
+    }
+  ],
+  "test_metrics": [
+    {
+      "K": 10,
+      "Recall_micro_deepfm": 0.027105032,
+      "Recall_macro_deepfm": 0.0306663601,
+      "HitRate_deepfm": 0.0484904539,
+      "CandidateConditionedRecall_deepfm": 0.4723892838,
+      "CatalogCoverage_deepfm": 0.1451776377,
+      "hits_deepfm": 864,
+      "Recall_micro_mmr": 0.0270109173,
+      "Recall_macro_mmr": 0.0306693431,
+      "HitRate_mmr": 0.0485565171,
+      "CandidateConditionedRecall_mmr": 0.4707490432,
+      "CatalogCoverage_mmr": 0.1559363536,
+      "hits_mmr": 861
+    },
+    {
+      "K": 20,
+      "Recall_micro_deepfm": 0.0377399925,
+      "Recall_macro_deepfm": 0.0422603756,
+      "HitRate_deepfm": 0.0643456431,
+      "CandidateConditionedRecall_deepfm": 0.657736468,
+      "CatalogCoverage_deepfm": 0.2142684163,
+      "hits_deepfm": 1203,
+      "Recall_micro_mmr": 0.0377399925,
+      "Recall_macro_mmr": 0.0422904044,
+      "HitRate_mmr": 0.0644117064,
+      "CandidateConditionedRecall_mmr": 0.657736468,
+      "CatalogCoverage_mmr": 0.2158694424,
+      "hits_mmr": 1203
+    },
+    {
+      "K": 50,
+      "Recall_micro_deepfm": 0.0505395909,
+      "Recall_macro_deepfm": 0.0552577128,
+      "HitRate_deepfm": 0.0807293387,
+      "CandidateConditionedRecall_deepfm": 0.8808091853,
+      "CatalogCoverage_deepfm": 0.3197298437,
+      "hits_deepfm": 1611,
+      "Recall_micro_mmr": 0.0505395909,
+      "Recall_macro_mmr": 0.0552577128,
+      "HitRate_mmr": 0.0807293387,
+      "CandidateConditionedRecall_mmr": 0.8808091853,
+      "CatalogCoverage_mmr": 0.3197298437,
+      "hits_mmr": 1611
+    },
+    {
+      "K": 100,
+      "Recall_micro_deepfm": 0.057378592,
+      "Recall_macro_deepfm": 0.0616457625,
+      "HitRate_deepfm": 0.0888551232,
+      "CandidateConditionedRecall_deepfm": 1.0,
+      "CatalogCoverage_deepfm": 0.4383313451,
+      "hits_deepfm": 1829,
+      "Recall_micro_mmr": 0.057378592,
+      "Recall_macro_mmr": 0.0616457625,
+      "HitRate_mmr": 0.0888551232,
+      "CandidateConditionedRecall_mmr": 1.0,
+      "CatalogCoverage_mmr": 0.4383313451,
+      "hits_mmr": 1829
+    }
+  ],
+  "test_deepfm_diversity": {
+    "IntraListDiversity_known_pairs": 0.2534975768221843,
+    "known_pair_fraction": 0.938581694596757,
+    "mean_embedded_items_at_10": 9.66202021536632
+  },
+  "test_mmr_diversity": {
+    "IntraListDiversity_known_pairs": 0.2647606043048023,
+    "known_pair_fraction": 0.8744445178480985,
+    "mean_embedded_items_at_10": 9.276673052784568
+  },
+  "test_batch_seconds_two_runs": 36.0283,
+  "caveats": [
+    "No true ad impressions or calibrated CTR/CVR",
+    "Implicit view labels only",
+    "Item2Vec vectors missing for some items; ILD calculated only on known pairs",
+    "Test history includes data prior to September cutoff; test Item2Vec is separately trained before September",
+    "No production p95 latency measured",
+    "MMR re-ranks only Top-10; remaining Top-100 retains DeepFM order"
+  ]
+}

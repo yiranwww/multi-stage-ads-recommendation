@@ -1,0 +1,45 @@
+{
+  "cutoffs_utc": {
+    "train": "2015-07-31 19:47:53.596000+00:00",
+    "validation": "2015-08-18 18:21:27.439000+00:00",
+    "test": "2015-09-04 07:47:49.447000+00:00"
+  },
+  "property_checks": {
+    "exact_duplicate_excess_rows": null,
+    "conflicting_timestamp_keys": 0,
+    "repeated_timestamp_keys": 0,
+    "item_property_pairs_with_multiple_timestamps": 514679
+  },
+  "tree_checks": {
+    "nodes": 1669,
+    "roots": 25,
+    "orphan_parent_links": 0,
+    "self_parent_links": 0
+  },
+  "coverage_checks": {
+    "event_items": 235061,
+    "event_items_with_properties": 185246,
+    "event_items_with_valid_category": 185246,
+    "unparseable_category_rows": 0,
+    "unknown_category_rows": 167,
+    "property_coverage_fraction": 0.7880762865809301,
+    "category_coverage_fraction": 0.7880762865809301
+  },
+  "splits": {
+    "train": {
+      "examples": 37448,
+      "positives": 9362,
+      "weak_negatives": 28086
+    },
+    "validation": {
+      "examples": 36080,
+      "positives": 9020,
+      "weak_negatives": 27060
+    },
+    "test": {
+      "examples": 32856,
+      "positives": 8214,
+      "weak_negatives": 24642
+    }
+  }
+}

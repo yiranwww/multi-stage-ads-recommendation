@@ -1,0 +1,99 @@
+{
+  "method": "itemcf_cosine_cooccurrence_with_popularity_fallback",
+  "protocol": "warm-user future-view pairs; exclude seen; cold/seen labels remain in denominator",
+  "cutoffs_utc": {
+    "validation": "2015-08-01",
+    "test": "2015-09-01"
+  },
+  "config": {
+    "max_items_per_training_user": 20,
+    "max_item_user_frequency_for_similarity": 2000,
+    "top_neighbors_per_item": 50,
+    "seed_items": 20,
+    "max_k": 100
+  },
+  "validation": {
+    "users": 13329,
+    "positive_pairs": 28634,
+    "eligible_pairs": 21984,
+    "batch_seconds": 0.6695714999987104,
+    "users_with_cf_candidates": 12024,
+    "avg_cf_candidates": 45.412409032935706,
+    "metrics": [
+      {
+        "K": 10,
+        "Recall@K_macro": 0.023007922828465418,
+        "Recall@K_micro": 0.02144303974296291,
+        "HitRate@K": 0.03818741090854528,
+        "UniqueRecommendedItems": 48830,
+        "CatalogCoverage": 0.24453024453024452
+      },
+      {
+        "K": 20,
+        "Recall@K_macro": 0.033449838133293205,
+        "Recall@K_micro": 0.032269330166934417,
+        "HitRate@K": 0.05401755570560432,
+        "UniqueRecommendedItems": 64720,
+        "CatalogCoverage": 0.3241039816915303
+      },
+      {
+        "K": 50,
+        "Recall@K_macro": 0.0486967502371254,
+        "Recall@K_micro": 0.04913738911783195,
+        "HitRate@K": 0.07802535824142846,
+        "UniqueRecommendedItems": 77378,
+        "CatalogCoverage": 0.38749255091667545
+      },
+      {
+        "K": 100,
+        "Recall@K_macro": 0.06149519503676106,
+        "Recall@K_micro": 0.062373402249074526,
+        "HitRate@K": 0.09603121014329657,
+        "UniqueRecommendedItems": 81055,
+        "CatalogCoverage": 0.40590618411630086
+      }
+    ]
+  },
+  "test": {
+    "users": 15137,
+    "positive_pairs": 31876,
+    "eligible_pairs": 24875,
+    "batch_seconds": 1.0270342000003438,
+    "users_with_cf_candidates": 13852,
+    "avg_cf_candidates": 47.05873026359252,
+    "metrics": [
+      {
+        "K": 10,
+        "Recall@K_macro": 0.02286504914851062,
+        "Recall@K_micro": 0.019920943656669594,
+        "HitRate@K": 0.03686331505582348,
+        "UniqueRecommendedItems": 56331,
+        "CatalogCoverage": 0.25262577248387763
+      },
+      {
+        "K": 20,
+        "Recall@K_macro": 0.03233894954285052,
+        "Recall@K_micro": 0.028140293637846654,
+        "HitRate@K": 0.04994384620466407,
+        "UniqueRecommendedItems": 75339,
+        "CatalogCoverage": 0.33787032137123174
+      },
+      {
+        "K": 50,
+        "Recall@K_macro": 0.048958675730702644,
+        "Recall@K_micro": 0.04354373196135023,
+        "HitRate@K": 0.0724053643390368,
+        "UniqueRecommendedItems": 90838,
+        "CatalogCoverage": 0.4073781740230153
+      },
+      {
+        "K": 100,
+        "Recall@K_macro": 0.059682785545117294,
+        "Recall@K_micro": 0.054617894340569705,
+        "HitRate@K": 0.08859087005351127,
+        "UniqueRecommendedItems": 94990,
+        "CatalogCoverage": 0.4259985110905813
+      }
+    ]
+  }
+}

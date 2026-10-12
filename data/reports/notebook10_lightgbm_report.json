@@ -1,0 +1,549 @@
+{
+  "notebook": "10_lightgbm_pre_ranking",
+  "objective": "Binary baseline + LambdaRank group-aware ranking",
+  "input_files": {
+    "train": "train_ranking_features_top500.parquet",
+    "validation": "validation_ranking_features_top500.parquet",
+    "test": "test_ranking_features_top500.parquet"
+  },
+  "feature_count": 57,
+  "categorical_features": [
+    "category_id",
+    "parent_category_id",
+    "root_category_id"
+  ],
+  "features": [
+    "retrieval_rank",
+    "rrf_score",
+    "source_count",
+    "from_popularity",
+    "from_cf",
+    "from_faiss",
+    "from_category",
+    "is_fallback",
+    "popularity_rank",
+    "popularity_score",
+    "cf_rank",
+    "cf_score",
+    "faiss_rank",
+    "faiss_score",
+    "category_rank",
+    "category_score",
+    "user_events_30d",
+    "user_unique_items_30d",
+    "user_events_7d",
+    "user_events_1d",
+    "user_views_30d",
+    "user_carts_30d",
+    "user_purchases_30d",
+    "user_views_7d",
+    "user_carts_7d",
+    "user_purchases_7d",
+    "user_recency_days",
+    "item_events_30d",
+    "item_users_30d",
+    "item_events_7d",
+    "item_events_1d",
+    "item_views_30d",
+    "item_carts_30d",
+    "item_purchases_30d",
+    "item_views_7d",
+    "item_purchases_7d",
+    "item_recency_days",
+    "ui_events_30d",
+    "ui_views_30d",
+    "ui_recency_days",
+    "known_property_count",
+    "category_id",
+    "parent_category_id",
+    "root_category_id",
+    "category_depth",
+    "missing_category",
+    "missing_properties",
+    "missing_property_timestamp",
+    "days_since_property_update",
+    "property_distinct_keys_historical",
+    "user_category_30d_events",
+    "user_category_30d_items",
+    "category_30d_events",
+    "user_category_affinity",
+    "item_cart_to_view_ratio",
+    "item_purchase_to_view_ratio",
+    "user_purchase_to_view_ratio"
+  ],
+  "ks": [
+    20,
+    50,
+    100
+  ],
+  "label_definition": "eligible future positive among 500 candidates; other candidates weak negatives",
+  "metric_definition": {
+    "recall_micro": "topK positive hits / all eligible future positive pairs from Notebook 02",
+    "hit_rate": "fraction of all eligible evaluation users with >=1 topK hit",
+    "ndcg": "mean user DCG@K / ideal DCG@K from all eligible future positives; zero for misses",
+    "pr_auc": "average precision over the fixed candidate pool; not a CTR estimate"
+  },
+  "training": {
+    "binary_best_iteration": 19,
+    "lambdarank_best_iteration": 53,
+    "binary_seconds": 10.457,
+    "lambdarank_seconds": 13.271,
+    "model_selection": "highest validation full-eligible-user NDCG@20 among LightGBM models",
+    "selected_model": "binary",
+    "test_not_used_for_selection": true
+  },
+  "data_audit": [
+    {
+      "split": "train",
+      "rows": 2055000,
+      "users": 4110,
+      "positives_in_candidates": 2131,
+      "eligible_positives": 9362,
+      "positive_rate": 0.0010369829683698297,
+      "min_group": 500,
+      "max_group": 500
+    },
+    {
+      "split": "validation",
+      "rows": 1828500,
+      "users": 3657,
+      "positives_in_candidates": 1996,
+      "eligible_positives": 9020,
+      "positive_rate": 0.0010916051408258135,
+      "min_group": 500,
+      "max_group": 500
+    },
+    {
+      "split": "test",
+      "rows": 1786000,
+      "users": 3572,
+      "positives_in_candidates": 1785,
+      "eligible_positives": 8214,
+      "positive_rate": 0.0009994400895856662,
+      "min_group": 500,
+      "max_group": 500
+    }
+  ],
+  "ranking_metrics": [
+    {
+      "split": "train",
+      "method": "rrf_baseline",
+      "k": 20,
+      "hits": 712,
+      "eligible_positive_pairs": 9362,
+      "recall_micro": 0.076052125614185,
+      "hit_rate": 0.13600973236009734,
+      "ndcg": 0.05178880520395712,
+      "user_coverage": 1.0
+    },
+    {
+      "split": "train",
+      "method": "rrf_baseline",
+      "k": 50,
+      "hits": 1071,
+      "eligible_positive_pairs": 9362,
+      "recall_micro": 0.11439863277077547,
+      "hit_rate": 0.1902676399026764,
+      "ndcg": 0.06200266215338248,
+      "user_coverage": 1.0
+    },
+    {
+      "split": "train",
+      "method": "rrf_baseline",
+      "k": 100,
+      "hits": 1338,
+      "eligible_positive_pairs": 9362,
+      "recall_micro": 0.14291817987609484,
+      "hit_rate": 0.22773722627737225,
+      "ndcg": 0.06783768300636928,
+      "user_coverage": 1.0
+    },
+    {
+      "split": "validation",
+      "method": "rrf_baseline",
+      "k": 20,
+      "hits": 615,
+      "eligible_positive_pairs": 9020,
+      "recall_micro": 0.06818181818181818,
+      "hit_rate": 0.13125512715340443,
+      "ndcg": 0.045277359779496866,
+      "user_coverage": 1.0
+    },
+    {
+      "split": "validation",
+      "method": "rrf_baseline",
+      "k": 50,
+      "hits": 927,
+      "eligible_positive_pairs": 9020,
+      "recall_micro": 0.10277161862527716,
+      "hit_rate": 0.17801476620180476,
+      "ndcg": 0.054554184716979315,
+      "user_coverage": 1.0
+    },
+    {
+      "split": "validation",
+      "method": "rrf_baseline",
+      "k": 100,
+      "hits": 1185,
+      "eligible_positive_pairs": 9020,
+      "recall_micro": 0.13137472283813748,
+      "hit_rate": 0.21848509707410446,
+      "ndcg": 0.06097377802181499,
+      "user_coverage": 1.0
+    },
+    {
+      "split": "test",
+      "method": "rrf_baseline",
+      "k": 20,
+      "hits": 548,
+      "eligible_positive_pairs": 8214,
+      "recall_micro": 0.06671536401266132,
+      "hit_rate": 0.12374020156774916,
+      "ndcg": 0.047180851917116955,
+      "user_coverage": 1.0
+    },
+    {
+      "split": "test",
+      "method": "rrf_baseline",
+      "k": 50,
+      "hits": 814,
+      "eligible_positive_pairs": 8214,
+      "recall_micro": 0.0990990990990991,
+      "hit_rate": 0.17105263157894737,
+      "ndcg": 0.0559046030212463,
+      "user_coverage": 1.0
+    },
+    {
+      "split": "test",
+      "method": "rrf_baseline",
+      "k": 100,
+      "hits": 1066,
+      "eligible_positive_pairs": 8214,
+      "recall_micro": 0.12977842707572437,
+      "hit_rate": 0.2122060470324748,
+      "ndcg": 0.062515860161324,
+      "user_coverage": 1.0
+    },
+    {
+      "split": "train",
+      "method": "binary",
+      "k": 20,
+      "hits": 1032,
+      "eligible_positive_pairs": 9362,
+      "recall_micro": 0.11023285622730186,
+      "hit_rate": 0.18248175182481752,
+      "ndcg": 0.0821861101775453,
+      "user_coverage": 1.0
+    },
+    {
+      "split": "train",
+      "method": "binary",
+      "k": 50,
+      "hits": 1426,
+      "eligible_positive_pairs": 9362,
+      "recall_micro": 0.152317880794702,
+      "hit_rate": 0.2321167883211679,
+      "ndcg": 0.09217058340389887,
+      "user_coverage": 1.0
+    },
+    {
+      "split": "train",
+      "method": "binary",
+      "k": 100,
+      "hits": 1724,
+      "eligible_positive_pairs": 9362,
+      "recall_micro": 0.18414868617816707,
+      "hit_rate": 0.26982968369829685,
+      "ndcg": 0.09874824324176076,
+      "user_coverage": 1.0
+    },
+    {
+      "split": "validation",
+      "method": "binary",
+      "k": 20,
+      "hits": 641,
+      "eligible_positive_pairs": 9020,
+      "recall_micro": 0.07106430155210643,
+      "hit_rate": 0.13070823079026525,
+      "ndcg": 0.05085307255074707,
+      "user_coverage": 1.0
+    },
+    {
+      "split": "validation",
+      "method": "binary",
+      "k": 50,
+      "hits": 985,
+      "eligible_positive_pairs": 9020,
+      "recall_micro": 0.10920177383592018,
+      "hit_rate": 0.18430407437790539,
+      "ndcg": 0.061532926045792656,
+      "user_coverage": 1.0
+    },
+    {
+      "split": "validation",
+      "method": "binary",
+      "k": 100,
+      "hits": 1285,
+      "eligible_positive_pairs": 9020,
+      "recall_micro": 0.14246119733924612,
+      "hit_rate": 0.23051681706316654,
+      "ndcg": 0.06936692389979898,
+      "user_coverage": 1.0
+    },
+    {
+      "split": "train",
+      "method": "lambdarank",
+      "k": 20,
+      "hits": 1207,
+      "eligible_positive_pairs": 9362,
+      "recall_micro": 0.12892544328135014,
+      "hit_rate": 0.23309002433090023,
+      "ndcg": 0.13000613140069253,
+      "user_coverage": 1.0
+    },
+    {
+      "split": "train",
+      "method": "lambdarank",
+      "k": 50,
+      "hits": 1448,
+      "eligible_positive_pairs": 9362,
+      "recall_micro": 0.15466780602435376,
+      "hit_rate": 0.2613138686131387,
+      "ndcg": 0.13618464359203733,
+      "user_coverage": 1.0
+    },
+    {
+      "split": "train",
+      "method": "lambdarank",
+      "k": 100,
+      "hits": 1687,
+      "eligible_positive_pairs": 9362,
+      "recall_micro": 0.18019653920102544,
+      "hit_rate": 0.28588807785888076,
+      "ndcg": 0.14094105833687023,
+      "user_coverage": 1.0
+    },
+    {
+      "split": "validation",
+      "method": "lambdarank",
+      "k": 20,
+      "hits": 610,
+      "eligible_positive_pairs": 9020,
+      "recall_micro": 0.06762749445676275,
+      "hit_rate": 0.12961443806398687,
+      "ndcg": 0.04886066510285018,
+      "user_coverage": 1.0
+    },
+    {
+      "split": "validation",
+      "method": "lambdarank",
+      "k": 50,
+      "hits": 938,
+      "eligible_positive_pairs": 9020,
+      "recall_micro": 0.10399113082039911,
+      "hit_rate": 0.183210281651627,
+      "ndcg": 0.0591187146466073,
+      "user_coverage": 1.0
+    },
+    {
+      "split": "validation",
+      "method": "lambdarank",
+      "k": 100,
+      "hits": 1229,
+      "eligible_positive_pairs": 9020,
+      "recall_micro": 0.13625277161862528,
+      "hit_rate": 0.22313371616078753,
+      "ndcg": 0.06602592454748261,
+      "user_coverage": 1.0
+    },
+    {
+      "split": "test",
+      "method": "binary",
+      "k": 20,
+      "hits": 596,
+      "eligible_positive_pairs": 8214,
+      "recall_micro": 0.0725590455320185,
+      "hit_rate": 0.13157894736842105,
+      "ndcg": 0.05399944226415345,
+      "user_coverage": 1.0
+    },
+    {
+      "split": "test",
+      "method": "binary",
+      "k": 50,
+      "hits": 880,
+      "eligible_positive_pairs": 8214,
+      "recall_micro": 0.10713416118821524,
+      "hit_rate": 0.17945128779395297,
+      "ndcg": 0.06333682250238282,
+      "user_coverage": 1.0
+    },
+    {
+      "split": "test",
+      "method": "binary",
+      "k": 100,
+      "hits": 1170,
+      "eligible_positive_pairs": 8214,
+      "recall_micro": 0.14243973703433163,
+      "hit_rate": 0.22676371780515117,
+      "ndcg": 0.07109387022570196,
+      "user_coverage": 1.0
+    },
+    {
+      "split": "test",
+      "method": "lambdarank",
+      "k": 20,
+      "hits": 533,
+      "eligible_positive_pairs": 8214,
+      "recall_micro": 0.06488921353786219,
+      "hit_rate": 0.12010078387458006,
+      "ndcg": 0.04683132541002705,
+      "user_coverage": 1.0
+    },
+    {
+      "split": "test",
+      "method": "lambdarank",
+      "k": 50,
+      "hits": 823,
+      "eligible_positive_pairs": 8214,
+      "recall_micro": 0.10019478938397858,
+      "hit_rate": 0.16993281075027997,
+      "ndcg": 0.056069097351759696,
+      "user_coverage": 1.0
+    },
+    {
+      "split": "test",
+      "method": "lambdarank",
+      "k": 100,
+      "hits": 1113,
+      "eligible_positive_pairs": 8214,
+      "recall_micro": 0.13550036523009495,
+      "hit_rate": 0.21808510638297873,
+      "ndcg": 0.0637968021400093,
+      "user_coverage": 1.0
+    }
+  ],
+  "pr_auc": [
+    {
+      "split": "train",
+      "method": "rrf_baseline",
+      "pr_auc": 0.007275282853537215
+    },
+    {
+      "split": "validation",
+      "method": "rrf_baseline",
+      "pr_auc": 0.006341566585995552
+    },
+    {
+      "split": "test",
+      "method": "rrf_baseline",
+      "pr_auc": 0.006218233974241421
+    },
+    {
+      "split": "train",
+      "method": "binary",
+      "pr_auc": 0.06087541112375903
+    },
+    {
+      "split": "validation",
+      "method": "binary",
+      "pr_auc": 0.017820023068092383
+    },
+    {
+      "split": "train",
+      "method": "lambdarank",
+      "pr_auc": 0.0569506409957147
+    },
+    {
+      "split": "validation",
+      "method": "lambdarank",
+      "pr_auc": 0.011968739444427987
+    },
+    {
+      "split": "test",
+      "method": "binary",
+      "pr_auc": 0.014597357781318562
+    },
+    {
+      "split": "test",
+      "method": "lambdarank",
+      "pr_auc": 0.009456001944570854
+    }
+  ],
+  "prediction_exports": [
+    {
+      "split": "train",
+      "method": "rrf_baseline",
+      "path": "train_lightgbm_rrf_baseline_top500.parquet",
+      "rows": 2055000,
+      "size_mb": 2.8
+    },
+    {
+      "split": "train",
+      "method": "binary",
+      "path": "train_lightgbm_binary_top500.parquet",
+      "rows": 2055000,
+      "size_mb": 6.95
+    },
+    {
+      "split": "train",
+      "method": "lambdarank",
+      "path": "train_lightgbm_lambdarank_top500.parquet",
+      "rows": 2055000,
+      "size_mb": 15.15
+    },
+    {
+      "split": "validation",
+      "method": "rrf_baseline",
+      "path": "validation_lightgbm_rrf_baseline_top500.parquet",
+      "rows": 1828500,
+      "size_mb": 2.49
+    },
+    {
+      "split": "validation",
+      "method": "binary",
+      "path": "validation_lightgbm_binary_top500.parquet",
+      "rows": 1828500,
+      "size_mb": 6.28
+    },
+    {
+      "split": "validation",
+      "method": "lambdarank",
+      "path": "validation_lightgbm_lambdarank_top500.parquet",
+      "rows": 1828500,
+      "size_mb": 13.52
+    },
+    {
+      "split": "test",
+      "method": "rrf_baseline",
+      "path": "test_lightgbm_rrf_baseline_top500.parquet",
+      "rows": 1786000,
+      "size_mb": 2.41
+    },
+    {
+      "split": "test",
+      "method": "binary",
+      "path": "test_lightgbm_binary_top500.parquet",
+      "rows": 1786000,
+      "size_mb": 5.89
+    },
+    {
+      "split": "test",
+      "method": "lambdarank",
+      "path": "test_lightgbm_lambdarank_top500.parquet",
+      "rows": 1786000,
+      "size_mb": 12.71
+    }
+  ],
+  "model_files": {
+    "binary": "notebook10_lightgbm_binary.txt",
+    "lambdarank": "notebook10_lightgbm_lambdarank.txt"
+  },
+  "limitations": [
+    "weak implicit negatives; no impression logs",
+    "candidate ranking cannot recover positives missing from retrieval",
+    "NDCG computed on eligible positive universe, not only candidate positives",
+    "PIT is split-level (not event-level) as in Notebook 09",
+    "no real online latency or causal CTR/CVR"
+  ]
+}

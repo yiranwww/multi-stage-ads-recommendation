@@ -1,0 +1,129 @@
+{
+  "method": "item2vec_skipgram_restricted_seed_cosine_with_popularity_fallback",
+  "protocol": "warm-user future-view pairs; exclude seen; cold/seen labels remain in denominator",
+  "cutoffs_utc": {
+    "validation": "2015-08-01",
+    "test": "2015-09-01"
+  },
+  "config": {
+    "max_sequence_length": 30,
+    "vector_size": 64,
+    "window": 5,
+    "min_count": 5,
+    "epochs": 8,
+    "workers": 1,
+    "random_seed": 42,
+    "max_indexed_seeds": 3000,
+    "neighbors_per_seed": 80,
+    "seed_items_per_user": 10,
+    "max_k": 100
+  },
+  "fit_diagnostics": {
+    "val": {
+      "sequence_count": 270872,
+      "vocabulary_items": 43267,
+      "training_seconds": 22.745
+    },
+    "test": {
+      "sequence_count": 351251,
+      "vocabulary_items": 52280,
+      "training_seconds": 30.586
+    }
+  },
+  "index_diagnostics": {
+    "val": {
+      "indexed_seeds": 3000,
+      "vocabulary_items": 43267,
+      "index_build_seconds": 0.804
+    },
+    "test": {
+      "indexed_seeds": 3000,
+      "vocabulary_items": 52280,
+      "index_build_seconds": 0.819
+    }
+  },
+  "validation": {
+    "users": 13329,
+    "positive_pairs": 28634,
+    "eligible_pairs": 21984,
+    "batch_seconds": 0.4299230000033276,
+    "users_with_embedding_candidates": 4673,
+    "avg_embedding_candidates": 29.816115237452173,
+    "metrics": [
+      {
+        "K": 10,
+        "Recall@K_macro": 0.011652146712976498,
+        "Recall@K_micro": 0.010372284696514633,
+        "HitRate@K": 0.018681071348188163,
+        "UniqueRecommendedItems": 11741,
+        "CatalogCoverage": 0.058796428446233895
+      },
+      {
+        "K": 20,
+        "Recall@K_macro": 0.01725236753107326,
+        "Recall@K_micro": 0.015750506391003703,
+        "HitRate@K": 0.027683997299122215,
+        "UniqueRecommendedItems": 16932,
+        "CatalogCoverage": 0.08479185132881631
+      },
+      {
+        "K": 50,
+        "Recall@K_macro": 0.027072303319806725,
+        "Recall@K_micro": 0.026716490884961933,
+        "HitRate@K": 0.042613849501087854,
+        "UniqueRecommendedItems": 25317,
+        "CatalogCoverage": 0.12678214623739917
+      },
+      {
+        "K": 100,
+        "Recall@K_macro": 0.03890036241706476,
+        "Recall@K_micro": 0.038101557588880355,
+        "HitRate@K": 0.05881911621276915,
+        "UniqueRecommendedItems": 29974,
+        "CatalogCoverage": 0.1501034108037999
+      }
+    ]
+  },
+  "test": {
+    "users": 15137,
+    "positive_pairs": 31876,
+    "eligible_pairs": 24875,
+    "batch_seconds": 0.46357200000056764,
+    "users_with_embedding_candidates": 5255,
+    "avg_embedding_candidates": 29.55030719429213,
+    "metrics": [
+      {
+        "K": 10,
+        "Recall@K_macro": 0.010821005044616836,
+        "Recall@K_micro": 0.009003639101518383,
+        "HitRate@K": 0.017110391755301577,
+        "UniqueRecommendedItems": 12737,
+        "CatalogCoverage": 0.05712120260828228
+      },
+      {
+        "K": 20,
+        "Recall@K_macro": 0.016105153099231235,
+        "Recall@K_micro": 0.014085832601330154,
+        "HitRate@K": 0.025632555988637114,
+        "UniqueRecommendedItems": 18745,
+        "CatalogCoverage": 0.084065081486398
+      },
+      {
+        "K": 50,
+        "Recall@K_macro": 0.025007586088688367,
+        "Recall@K_micro": 0.0232463295269168,
+        "HitRate@K": 0.03904340358063024,
+        "UniqueRecommendedItems": 28897,
+        "CatalogCoverage": 0.12959342009668942
+      },
+      {
+        "K": 100,
+        "Recall@K_macro": 0.036389676114717634,
+        "Recall@K_micro": 0.03416363408206801,
+        "HitRate@K": 0.05555922573825725,
+        "UniqueRecommendedItems": 34668,
+        "CatalogCoverage": 0.15547443291386748
+      }
+    ]
+  }
+}

@@ -1,0 +1,182 @@
+{
+  "method": "numerical-feature DeepFM sampled implicit negative re-ranker",
+  "protocol": "August user-disjoint holdout; full-Aug refit; September test",
+  "caveats": [
+    "No impression logs; implicit negatives are not confirmed negatives",
+    "Scores are not calibrated CTR/CVR",
+    "Fixed Notebook 08 Top-100 candidate pool"
+  ],
+  "features": [
+    "retrieval_rank",
+    "rrf_inverse_rank",
+    "from_itemcf",
+    "from_faiss_fallback",
+    "from_popularity",
+    "source_count",
+    "log_item_views",
+    "log_item_unique_viewers",
+    "log_user_views",
+    "log_user_unique_items",
+    "user_last_event_days",
+    "item_last_view_days",
+    "item_view_share",
+    "log_item_carts",
+    "log_item_purchases"
+  ],
+  "best_epoch": 7,
+  "epochs_tried": 8,
+  "train_rows": 214772,
+  "train_positives": 1512,
+  "validation_holdout_users": 2666,
+  "validation_holdout": [
+    {
+      "K": 10,
+      "Recall_micro_hybrid": 0.025739531310026893,
+      "Recall_macro_hybrid": 0.026255539908953265,
+      "HitRate_hybrid": 0.0450112528132033,
+      "CandidateConditionedRecall_hybrid": 0.35638297872340424,
+      "hits_hybrid": 134,
+      "Recall_micro_deepfm": 0.03419131771033423,
+      "Recall_macro_deepfm": 0.03424382410311877,
+      "HitRate_deepfm": 0.05738934733683421,
+      "CandidateConditionedRecall_deepfm": 0.4734042553191489,
+      "hits_deepfm": 178
+    },
+    {
+      "K": 20,
+      "Recall_micro_hybrid": 0.03803303880138302,
+      "Recall_macro_hybrid": 0.03814920682673546,
+      "HitRate_hybrid": 0.06301575393848462,
+      "CandidateConditionedRecall_hybrid": 0.526595744680851,
+      "hits_hybrid": 198,
+      "Recall_micro_deepfm": 0.04552439492892816,
+      "Recall_macro_deepfm": 0.044656326471229815,
+      "HitRate_deepfm": 0.07389347336834208,
+      "CandidateConditionedRecall_deepfm": 0.6303191489361702,
+      "hits_deepfm": 237
+    },
+    {
+      "K": 50,
+      "Recall_micro_hybrid": 0.05455243949289282,
+      "Recall_macro_hybrid": 0.051330325633931,
+      "HitRate_hybrid": 0.08177044261065267,
+      "CandidateConditionedRecall_hybrid": 0.7553191489361702,
+      "hits_hybrid": 284,
+      "Recall_micro_deepfm": 0.06204379562043796,
+      "Recall_macro_deepfm": 0.057446030641454544,
+      "HitRate_deepfm": 0.0900225056264066,
+      "CandidateConditionedRecall_deepfm": 0.8590425531914894,
+      "hits_deepfm": 323
+    },
+    {
+      "K": 100,
+      "Recall_micro_hybrid": 0.07222435651171726,
+      "Recall_macro_hybrid": 0.06556542541688833,
+      "HitRate_hybrid": 0.1005251312828207,
+      "CandidateConditionedRecall_hybrid": 1.0,
+      "hits_hybrid": 376,
+      "Recall_micro_deepfm": 0.07222435651171726,
+      "Recall_macro_deepfm": 0.06556542541688833,
+      "HitRate_deepfm": 0.1005251312828207,
+      "CandidateConditionedRecall_deepfm": 1.0,
+      "hits_deepfm": 376
+    }
+  ],
+  "test": [
+    {
+      "K": 10,
+      "Recall_micro_hybrid": 0.020767975906638224,
+      "Recall_macro_hybrid": 0.02406704348185573,
+      "HitRate_hybrid": 0.037590011230759064,
+      "CandidateConditionedRecall_hybrid": 0.36194641880809186,
+      "hits_hybrid": 662,
+      "Recall_micro_deepfm": 0.02710503199899611,
+      "Recall_macro_deepfm": 0.030666360117872795,
+      "HitRate_deepfm": 0.04849045385479289,
+      "CandidateConditionedRecall_deepfm": 0.4723892837616184,
+      "hits_deepfm": 864
+    },
+    {
+      "K": 20,
+      "Recall_micro_hybrid": 0.029426527795206426,
+      "Recall_macro_hybrid": 0.033581285734440726,
+      "HitRate_hybrid": 0.051132985400013216,
+      "CandidateConditionedRecall_hybrid": 0.512848551120831,
+      "hits_hybrid": 938,
+      "Recall_micro_deepfm": 0.03773999247082444,
+      "Recall_macro_deepfm": 0.04226037562452663,
+      "HitRate_deepfm": 0.06434564312611482,
+      "CandidateConditionedRecall_deepfm": 0.6577364680153089,
+      "hits_deepfm": 1203
+    },
+    {
+      "K": 50,
+      "Recall_micro_hybrid": 0.04501819550759192,
+      "Recall_macro_hybrid": 0.049997177731414905,
+      "HitRate_hybrid": 0.07319812380260289,
+      "CandidateConditionedRecall_hybrid": 0.7845817386550027,
+      "hits_hybrid": 1435,
+      "Recall_micro_deepfm": 0.05053959091479483,
+      "Recall_macro_deepfm": 0.05525771276925928,
+      "HitRate_deepfm": 0.0807293387064808,
+      "CandidateConditionedRecall_deepfm": 0.8808091853471842,
+      "hits_deepfm": 1611
+    },
+    {
+      "K": 100,
+      "Recall_micro_hybrid": 0.057378592044171166,
+      "Recall_macro_hybrid": 0.061645762543949933,
+      "HitRate_hybrid": 0.0888551232080333,
+      "CandidateConditionedRecall_hybrid": 1.0,
+      "hits_hybrid": 1829,
+      "Recall_micro_deepfm": 0.057378592044171166,
+      "Recall_macro_deepfm": 0.061645762543949933,
+      "HitRate_deepfm": 0.0888551232080333,
+      "CandidateConditionedRecall_deepfm": 1.0,
+      "hits_deepfm": 1829
+    }
+  ],
+  "test_scoring_seconds": 0.7471156000028714,
+  "epoch_history": [
+    {
+      "epoch": 1,
+      "loss": 1.1276642613040353,
+      "holdout_recall_at_10": 0.03034959661928544
+    },
+    {
+      "epoch": 2,
+      "loss": 0.8622358659676378,
+      "holdout_recall_at_10": 0.033230887437572035
+    },
+    {
+      "epoch": 3,
+      "loss": 0.8196806098146069,
+      "holdout_recall_at_10": 0.03361505954667691
+    },
+    {
+      "epoch": 4,
+      "loss": 0.8133136064561816,
+      "holdout_recall_at_10": 0.033422973492124475
+    },
+    {
+      "epoch": 5,
+      "loss": 0.8047481405409312,
+      "holdout_recall_at_10": 0.03380714560122935
+    },
+    {
+      "epoch": 6,
+      "loss": 0.8019751404396255,
+      "holdout_recall_at_10": 0.03399923165578179
+    },
+    {
+      "epoch": 7,
+      "loss": 0.7913163379738068,
+      "holdout_recall_at_10": 0.03419131771033423
+    },
+    {
+      "epoch": 8,
+      "loss": 0.7940010259648917,
+      "holdout_recall_at_10": 0.03399923165578179
+    }
+  ]
+}

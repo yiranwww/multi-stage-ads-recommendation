@@ -1,0 +1,121 @@
+{
+  "method": "offline cascaded ranking replay with precomputed stage scores",
+  "pipeline": [
+    "Notebook08 Hybrid Retrieval Top100",
+    "Notebook09 LightGBM gate TopN",
+    "Notebook10 DeepFM order gated candidates",
+    "Notebook12 MMR final Top10"
+  ],
+  "protocol": "August holdout selects TopN; MMR lambda fixed from Notebook12 August; September test once",
+  "candidate_pool": 100,
+  "top_n_grid": [
+    20,
+    30,
+    50,
+    70,
+    100
+  ],
+  "selected_top_n": 20,
+  "mmr_lambda": 0.9,
+  "holdout_gate_sweep": [
+    {
+      "top_n": 20,
+      "Recall_micro": 0.03515174798309643,
+      "Recall_macro": 0.034870206188836274,
+      "HitRate": 0.058514628657164294,
+      "hits": 183,
+      "deepfm_scored_fraction": 0.2
+    },
+    {
+      "top_n": 30,
+      "Recall_micro": 0.03515174798309643,
+      "Recall_macro": 0.034929858707007835,
+      "HitRate": 0.058514628657164294,
+      "hits": 183,
+      "deepfm_scored_fraction": 0.3
+    },
+    {
+      "top_n": 50,
+      "Recall_micro": 0.03457548981943911,
+      "Recall_macro": 0.0346939366312508,
+      "HitRate": 0.05813953488372093,
+      "hits": 180,
+      "deepfm_scored_fraction": 0.5
+    },
+    {
+      "top_n": 70,
+      "Recall_micro": 0.03419131771033423,
+      "Recall_macro": 0.03424382410311877,
+      "HitRate": 0.05738934733683421,
+      "hits": 178,
+      "deepfm_scored_fraction": 0.7
+    },
+    {
+      "top_n": 100,
+      "Recall_micro": 0.03419131771033423,
+      "Recall_macro": 0.03424382410311877,
+      "HitRate": 0.05738934733683421,
+      "hits": 178,
+      "deepfm_scored_fraction": 1.0
+    }
+  ],
+  "holdout": {
+    "ungated_deepfm": {
+      "Recall_micro": 0.03419131771033423,
+      "Recall_macro": 0.03424382410311877,
+      "HitRate": 0.05738934733683421,
+      "hits": 178
+    },
+    "gated_deepfm": {
+      "Recall_micro": 0.03515174798309643,
+      "Recall_macro": 0.034870206188836274,
+      "HitRate": 0.058514628657164294,
+      "hits": 183
+    },
+    "gated_deepfm_mmr": {
+      "Recall_micro": 0.03553592009220131,
+      "Recall_macro": 0.03537033122009409,
+      "HitRate": 0.05926481620405101,
+      "hits": 185
+    }
+  },
+  "holdout_diversity": {
+    "known_pair_ILD": 0.2687627921705549,
+    "known_pair_fraction": 0.9306493289989164,
+    "mean_embedded_items_at_10": 9.618904726181546
+  },
+  "test": {
+    "ungated_deepfm": {
+      "Recall_micro": 0.02710503199899611,
+      "Recall_macro": 0.030666360117872795,
+      "HitRate": 0.04849045385479289,
+      "hits": 864
+    },
+    "gated_deepfm": {
+      "Recall_micro": 0.027356004517505333,
+      "Recall_macro": 0.030951924955615467,
+      "HitRate": 0.04901896016383696,
+      "hits": 872
+    },
+    "gated_deepfm_mmr": {
+      "Recall_micro": 0.027387376082318986,
+      "Recall_macro": 0.03090159102142079,
+      "HitRate": 0.04901896016383696,
+      "hits": 873
+    }
+  },
+  "test_diversity": {
+    "known_pair_ILD": 0.2586541105923291,
+    "known_pair_fraction": 0.9169026594143856,
+    "mean_embedded_items_at_10": 9.541454713615643
+  },
+  "test_replay_seconds": 14.70385570000144,
+  "estimated_deepfm_candidate_reduction_fraction": 0.8,
+  "caveats": [
+    "Precomputed full-100 LightGBM/DeepFM scores: gating is simulated, not actual conditional inference",
+    "Test replay runtime is not p50/p95 serving latency",
+    "DeepFM was trained independently on Top100, not specifically on the LightGBM TopN distribution",
+    "No impression/auction logs; implicit negatives are not confirmed negatives",
+    "Item2Vec missing for some items; known-pair ILD is coverage-sensitive"
+  ]
+}

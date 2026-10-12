@@ -1,0 +1,170 @@
+{
+  "method": "frozen-cutoff offline snapshot replay and paired bootstrap",
+  "protocol": "September 1 history cutoff; future view labels; Notebook13 parameters frozen from August",
+  "selected_top_n": 20,
+  "mmr_lambda": 0.9,
+  "test_users": 15137,
+  "test_positive_pairs": 31876,
+  "model_summary": [
+    {
+      "model": "hybrid",
+      "Recall_micro": 0.020767975906638224,
+      "Recall_macro": 0.02406704348185573,
+      "HitRate": 0.037590011230759064,
+      "hits": 662,
+      "CatalogCoverage_at_10": 0.19801598335291637
+    },
+    {
+      "model": "lightgbm",
+      "Recall_micro": 0.02638348600828209,
+      "Recall_macro": 0.030129176584413588,
+      "HitRate": 0.047631631102596286,
+      "hits": 841,
+      "CatalogCoverage_at_10": 0.1491869298867173
+    },
+    {
+      "model": "deepfm",
+      "Recall_micro": 0.02710503199899611,
+      "Recall_macro": 0.030666360117872795,
+      "HitRate": 0.04849045385479289,
+      "hits": 864,
+      "CatalogCoverage_at_10": 0.14517763765685124
+    },
+    {
+      "model": "cascade",
+      "Recall_micro": 0.027387376082318986,
+      "Recall_macro": 0.03090159102142079,
+      "HitRate": 0.04901896016383696,
+      "hits": 873,
+      "CatalogCoverage_at_10": 0.14734821644796442
+    }
+  ],
+  "paired_user_bootstrap": [
+    {
+      "comparison": "cascade minus deepfm",
+      "delta_micro_recall": 0.0002823440833228761,
+      "ci95_low": -0.0002522401101486768,
+      "ci95_high": 0.0007934485591960289,
+      "bootstrap_fraction_positive": 0.8425,
+      "bootstrap_replicates": 2000
+    },
+    {
+      "comparison": "cascade minus lightgbm",
+      "delta_micro_recall": 0.001003890074036893,
+      "ci95_low": 8.894009121710356e-05,
+      "ci95_high": 0.0018888265236960097,
+      "bootstrap_fraction_positive": 0.98,
+      "bootstrap_replicates": 2000
+    },
+    {
+      "comparison": "cascade minus hybrid",
+      "delta_micro_recall": 0.006619400175680763,
+      "ci95_low": 0.00524896505000061,
+      "ci95_high": 0.00812985597344899,
+      "bootstrap_fraction_positive": 1.0,
+      "bootstrap_replicates": 2000
+    }
+  ],
+  "activity_segments": [
+    {
+      "cohort": "0–1 views",
+      "users": 6984,
+      "future_positive_pairs": 9862,
+      "hybrid_recall_micro": 0.026465220036503753,
+      "hybrid_hit_rate": 0.03293241695303551,
+      "lightgbm_recall_micro": 0.03336037314946259,
+      "lightgbm_hit_rate": 0.041237113402061855,
+      "deepfm_recall_micro": 0.033461772459947275,
+      "deepfm_hit_rate": 0.041666666666666664,
+      "cascade_recall_micro": 0.03386736970188603,
+      "cascade_hit_rate": 0.042382588774341354
+    },
+    {
+      "cohort": "2–3 views",
+      "users": 4067,
+      "future_positive_pairs": 6301,
+      "hybrid_recall_micro": 0.028884304078717664,
+      "hybrid_hit_rate": 0.039095156134743056,
+      "lightgbm_recall_micro": 0.03618473258212982,
+      "lightgbm_hit_rate": 0.04745512662896484,
+      "deepfm_recall_micro": 0.03713696238692271,
+      "deepfm_hit_rate": 0.04917629702483403,
+      "cascade_recall_micro": 0.03729566735438819,
+      "cascade_hit_rate": 0.04917629702483403
+    },
+    {
+      "cohort": "4–10 views",
+      "users": 2802,
+      "future_positive_pairs": 5245,
+      "hybrid_recall_micro": 0.02612011439466158,
+      "hybrid_hit_rate": 0.03997144896502498,
+      "lightgbm_recall_micro": 0.03508102955195424,
+      "lightgbm_hit_rate": 0.054960742326909354,
+      "deepfm_recall_micro": 0.034699714013346046,
+      "deepfm_hit_rate": 0.05246252676659529,
+      "cascade_recall_micro": 0.034699714013346046,
+      "cascade_hit_rate": 0.05281941470378301
+    },
+    {
+      "cohort": "11+ views",
+      "users": 1284,
+      "future_positive_pairs": 10468,
+      "hybrid_recall_micro": 0.007833397019487964,
+      "hybrid_hit_rate": 0.0529595015576324,
+      "lightgbm_recall_micro": 0.009552923194497517,
+      "lightgbm_hit_rate": 0.06697819314641744,
+      "deepfm_recall_micro": 0.01127244936950707,
+      "deepfm_hit_rate": 0.07476635514018691,
+      "cascade_recall_micro": 0.01165456629728697,
+      "cascade_hit_rate": 0.0763239875389408
+    }
+  ],
+  "fixed_snapshot_weekly_future_cohorts": [
+    {
+      "week_start": "2015-08-31",
+      "positive_pairs": 14396,
+      "users_with_future_views": 7359,
+      "hybrid_hits": 364,
+      "hybrid_recall_micro": 0.025284801333703807,
+      "lightgbm_hits": 455,
+      "lightgbm_recall_micro": 0.031606001667129756,
+      "deepfm_hits": 473,
+      "deepfm_recall_micro": 0.0328563489858294,
+      "cascade_hits": 474,
+      "cascade_recall_micro": 0.032925812725757155
+    },
+    {
+      "week_start": "2015-09-07",
+      "positive_pairs": 15492,
+      "users_with_future_views": 7720,
+      "hybrid_hits": 261,
+      "hybrid_recall_micro": 0.016847405112316034,
+      "lightgbm_hits": 344,
+      "lightgbm_recall_micro": 0.022205009036922282,
+      "deepfm_hits": 348,
+      "deepfm_recall_micro": 0.022463206816421378,
+      "cascade_hits": 355,
+      "cascade_recall_micro": 0.022915052930544796
+    },
+    {
+      "week_start": "2015-09-14",
+      "positive_pairs": 1988,
+      "users_with_future_views": 1140,
+      "hybrid_hits": 37,
+      "hybrid_recall_micro": 0.018611670020120725,
+      "lightgbm_hits": 42,
+      "lightgbm_recall_micro": 0.02112676056338028,
+      "deepfm_hits": 43,
+      "deepfm_recall_micro": 0.021629778672032193,
+      "cascade_hits": 44,
+      "cascade_recall_micro": 0.022132796780684104
+    }
+  ],
+  "caveats": [
+    "RetailRocket views are not ad impressions or observed non-clicks",
+    "No causal uplift or calibrated CTR/CVR can be inferred",
+    "Future calendar cohorts reuse a single September 1 recommendation snapshot, not online serving",
+    "Bootstrap intervals are descriptive and conditional on this offline evaluation cohort",
+    "DeepFM stage scores were precomputed on Top100 in Notebook13; no actual conditional inference latency measured"
+  ]
+}

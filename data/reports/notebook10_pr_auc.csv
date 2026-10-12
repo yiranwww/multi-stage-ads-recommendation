@@ -1,0 +1,10 @@
+split,method,pr_auc
+train,rrf_baseline,0.007275282853537215
+validation,rrf_baseline,0.006341566585995552
+test,rrf_baseline,0.006218233974241421
+train,binary,0.06087541112375903
+validation,binary,0.017820023068092383
+train,lambdarank,0.0569506409957147
+validation,lambdarank,0.011968739444427987
+test,binary,0.014597357781318562
+test,lambdarank,0.009456001944570854

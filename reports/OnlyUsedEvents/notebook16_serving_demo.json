@@ -1,0 +1,21 @@
+{
+  "method": "FastAPI frozen-snapshot serving demo with real LightGBM and conditional DeepFM inference",
+  "snapshot_cutoff": "2015-09-01",
+  "demo_users": 100,
+  "candidates_per_user": 100,
+  "deepfm_gate": 20,
+  "mmr_lambda": 0.9,
+  "offline_snapshot_build_seconds": 1.389752299997781,
+  "replay_users_checked": 100,
+  "exact_top10_replay_matches": 100,
+  "http_smoke_tests_passed": true,
+  "direct_call_ranking_with_mmr_p50_ms": 3.9867999999999997,
+  "direct_call_ranking_with_mmr_p95_ms": 5.555429999999999,
+  "scope_excluded": [
+    "online retrieval",
+    "online historical feature computation",
+    "network and concurrency load test",
+    "production monitoring",
+    "calibrated CTR or auction modeling"
+  ]
+}

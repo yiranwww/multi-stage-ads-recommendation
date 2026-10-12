@@ -1,0 +1,420 @@
+{
+  "method": "history-only ranking feature engineering with LightGBM ablations",
+  "protocol": "August user-disjoint holdout selects feature group; full-Aug refit; September test once",
+  "caveats": [
+    "No impression data; sampled implicit negatives are not confirmed negatives",
+    "Not calibrated CTR/CVR",
+    "Fixed Notebook 08 Top-100 candidates",
+    "Selection uses August holdout, not September test"
+  ],
+  "baseline_features": [
+    "retrieval_rank",
+    "rrf_inverse_rank",
+    "from_itemcf",
+    "from_faiss_fallback",
+    "from_popularity",
+    "source_count",
+    "log_item_views",
+    "log_item_unique_viewers",
+    "log_user_views",
+    "log_user_unique_items",
+    "user_last_event_days",
+    "item_last_view_days",
+    "item_view_share",
+    "log_item_carts",
+    "log_item_purchases"
+  ],
+  "new_features": [
+    "log_item_views_7d",
+    "log_item_views_30d",
+    "item_recent_7d_share",
+    "item_trend_7d_vs_30d",
+    "log_item_unique_viewers_30d",
+    "item_cart_per_view",
+    "item_purchase_per_view",
+    "log_user_carts",
+    "log_user_purchases",
+    "user_cart_per_view",
+    "user_purchase_per_view",
+    "user_views_7d",
+    "user_views_30d",
+    "user_recent_7d_share",
+    "user_item_activity_interaction",
+    "item_popularity_user_activity_ratio",
+    "item_recency_user_recency_gap",
+    "source_itemcf_x_recency",
+    "source_faiss_x_trend"
+  ],
+  "feature_groups": {
+    "baseline15": [
+      "retrieval_rank",
+      "rrf_inverse_rank",
+      "from_itemcf",
+      "from_faiss_fallback",
+      "from_popularity",
+      "source_count",
+      "log_item_views",
+      "log_item_unique_viewers",
+      "log_user_views",
+      "log_user_unique_items",
+      "user_last_event_days",
+      "item_last_view_days",
+      "item_view_share",
+      "log_item_carts",
+      "log_item_purchases"
+    ],
+    "enhanced34": [
+      "retrieval_rank",
+      "rrf_inverse_rank",
+      "from_itemcf",
+      "from_faiss_fallback",
+      "from_popularity",
+      "source_count",
+      "log_item_views",
+      "log_item_unique_viewers",
+      "log_user_views",
+      "log_user_unique_items",
+      "user_last_event_days",
+      "item_last_view_days",
+      "item_view_share",
+      "log_item_carts",
+      "log_item_purchases",
+      "log_item_views_7d",
+      "log_item_views_30d",
+      "item_recent_7d_share",
+      "item_trend_7d_vs_30d",
+      "log_item_unique_viewers_30d",
+      "item_cart_per_view",
+      "item_purchase_per_view",
+      "log_user_carts",
+      "log_user_purchases",
+      "user_cart_per_view",
+      "user_purchase_per_view",
+      "user_views_7d",
+      "user_views_30d",
+      "user_recent_7d_share",
+      "user_item_activity_interaction",
+      "item_popularity_user_activity_ratio",
+      "item_recency_user_recency_gap",
+      "source_itemcf_x_recency",
+      "source_faiss_x_trend"
+    ],
+    "without_source": [
+      "retrieval_rank",
+      "rrf_inverse_rank",
+      "log_item_views",
+      "log_item_unique_viewers",
+      "log_user_views",
+      "log_user_unique_items",
+      "user_last_event_days",
+      "item_last_view_days",
+      "item_view_share",
+      "log_item_carts",
+      "log_item_purchases",
+      "log_item_views_7d",
+      "log_item_views_30d",
+      "item_recent_7d_share",
+      "item_trend_7d_vs_30d",
+      "log_item_unique_viewers_30d",
+      "item_cart_per_view",
+      "item_purchase_per_view",
+      "log_user_carts",
+      "log_user_purchases",
+      "user_cart_per_view",
+      "user_purchase_per_view",
+      "user_views_7d",
+      "user_views_30d",
+      "user_recent_7d_share",
+      "user_item_activity_interaction",
+      "item_popularity_user_activity_ratio",
+      "item_recency_user_recency_gap"
+    ],
+    "without_temporal": [
+      "retrieval_rank",
+      "rrf_inverse_rank",
+      "from_itemcf",
+      "from_faiss_fallback",
+      "from_popularity",
+      "source_count",
+      "log_item_views",
+      "log_item_unique_viewers",
+      "log_user_views",
+      "log_user_unique_items",
+      "user_last_event_days",
+      "item_last_view_days",
+      "item_view_share",
+      "log_item_carts",
+      "log_item_purchases",
+      "item_cart_per_view",
+      "item_purchase_per_view",
+      "log_user_carts",
+      "log_user_purchases",
+      "user_cart_per_view",
+      "user_purchase_per_view",
+      "user_item_activity_interaction",
+      "item_popularity_user_activity_ratio"
+    ]
+  },
+  "selected_group": "enhanced34",
+  "selected_best_iteration": 594,
+  "train_rows": 214772,
+  "train_positives": 1512,
+  "validation_holdout_users": 2666,
+  "validation_holdout_ablation": [
+    {
+      "K": 10,
+      "hybrid": 0.0257395313,
+      "baseline15": 0.0322704572,
+      "enhanced34": 0.0324625432,
+      "without_source": 0.0290049942,
+      "without_temporal": 0.0318862851
+    },
+    {
+      "K": 20,
+      "hybrid": 0.0380330388,
+      "baseline15": 0.0461006531,
+      "enhanced34": 0.0447560507,
+      "without_source": 0.0411064157,
+      "without_temporal": 0.0439877065
+    },
+    {
+      "K": 50,
+      "hybrid": 0.0545524395,
+      "baseline15": 0.0614675375,
+      "enhanced34": 0.0624279677,
+      "without_source": 0.059930849,
+      "without_temporal": 0.0618517096
+    },
+    {
+      "K": 100,
+      "hybrid": 0.0722243565,
+      "baseline15": 0.0722243565,
+      "enhanced34": 0.0722243565,
+      "without_source": 0.0722243565,
+      "without_temporal": 0.0722243565
+    }
+  ],
+  "validation_holdout_metrics": {
+    "baseline15": [
+      {
+        "K": 10,
+        "Recall_micro": 0.0322704572,
+        "Recall_macro": 0.032465875,
+        "HitRate": 0.0540135034,
+        "CandidateConditionedRecall": 0.4468085106,
+        "hits": 168
+      },
+      {
+        "K": 20,
+        "Recall_micro": 0.0461006531,
+        "Recall_macro": 0.0454015311,
+        "HitRate": 0.0716429107,
+        "CandidateConditionedRecall": 0.6382978723,
+        "hits": 240
+      },
+      {
+        "K": 50,
+        "Recall_micro": 0.0614675375,
+        "Recall_macro": 0.0569157195,
+        "HitRate": 0.0892723181,
+        "CandidateConditionedRecall": 0.8510638298,
+        "hits": 320
+      },
+      {
+        "K": 100,
+        "Recall_micro": 0.0722243565,
+        "Recall_macro": 0.0655654254,
+        "HitRate": 0.1005251313,
+        "CandidateConditionedRecall": 1.0,
+        "hits": 376
+      }
+    ],
+    "enhanced34": [
+      {
+        "K": 10,
+        "Recall_micro": 0.0324625432,
+        "Recall_macro": 0.032379501,
+        "HitRate": 0.0555138785,
+        "CandidateConditionedRecall": 0.4494680851,
+        "hits": 169
+      },
+      {
+        "K": 20,
+        "Recall_micro": 0.0447560507,
+        "Recall_macro": 0.0429636993,
+        "HitRate": 0.0690172543,
+        "CandidateConditionedRecall": 0.6196808511,
+        "hits": 233
+      },
+      {
+        "K": 50,
+        "Recall_micro": 0.0624279677,
+        "Recall_macro": 0.0572516368,
+        "HitRate": 0.0903975994,
+        "CandidateConditionedRecall": 0.8643617021,
+        "hits": 325
+      },
+      {
+        "K": 100,
+        "Recall_micro": 0.0722243565,
+        "Recall_macro": 0.0655654254,
+        "HitRate": 0.1005251313,
+        "CandidateConditionedRecall": 1.0,
+        "hits": 376
+      }
+    ],
+    "without_source": [
+      {
+        "K": 10,
+        "Recall_micro": 0.0290049942,
+        "Recall_macro": 0.0298486693,
+        "HitRate": 0.0498874719,
+        "CandidateConditionedRecall": 0.4015957447,
+        "hits": 151
+      },
+      {
+        "K": 20,
+        "Recall_micro": 0.0411064157,
+        "Recall_macro": 0.039209862,
+        "HitRate": 0.0652663166,
+        "CandidateConditionedRecall": 0.5691489362,
+        "hits": 214
+      },
+      {
+        "K": 50,
+        "Recall_micro": 0.059930849,
+        "Recall_macro": 0.054913429,
+        "HitRate": 0.0847711928,
+        "CandidateConditionedRecall": 0.829787234,
+        "hits": 312
+      },
+      {
+        "K": 100,
+        "Recall_micro": 0.0722243565,
+        "Recall_macro": 0.0655654254,
+        "HitRate": 0.1005251313,
+        "CandidateConditionedRecall": 1.0,
+        "hits": 376
+      }
+    ],
+    "without_temporal": [
+      {
+        "K": 10,
+        "Recall_micro": 0.0318862851,
+        "Recall_macro": 0.033488921,
+        "HitRate": 0.0551387847,
+        "CandidateConditionedRecall": 0.4414893617,
+        "hits": 166
+      },
+      {
+        "K": 20,
+        "Recall_micro": 0.0439877065,
+        "Recall_macro": 0.0422754865,
+        "HitRate": 0.0701425356,
+        "CandidateConditionedRecall": 0.6090425532,
+        "hits": 229
+      },
+      {
+        "K": 50,
+        "Recall_micro": 0.0618517096,
+        "Recall_macro": 0.0565006915,
+        "HitRate": 0.0885221305,
+        "CandidateConditionedRecall": 0.8563829787,
+        "hits": 322
+      },
+      {
+        "K": 100,
+        "Recall_micro": 0.0722243565,
+        "Recall_macro": 0.0655654254,
+        "HitRate": 0.1005251313,
+        "CandidateConditionedRecall": 1.0,
+        "hits": 376
+      }
+    ]
+  },
+  "test": [
+    {
+      "K": 10,
+      "Recall_micro_hybrid": 0.0207679759,
+      "Recall_macro_hybrid": 0.0240670435,
+      "HitRate_hybrid": 0.0375900112,
+      "CandidateConditionedRecall_hybrid": 0.3619464188,
+      "hits_hybrid": 662,
+      "Recall_micro_feature_model": 0.0265717154,
+      "Recall_macro_feature_model": 0.0298894609,
+      "HitRate_feature_model": 0.0476976944,
+      "CandidateConditionedRecall_feature_model": 0.4630945872,
+      "hits_feature_model": 847
+    },
+    {
+      "K": 20,
+      "Recall_micro_hybrid": 0.0294265278,
+      "Recall_macro_hybrid": 0.0335812857,
+      "HitRate_hybrid": 0.0511329854,
+      "CandidateConditionedRecall_hybrid": 0.5128485511,
+      "hits_hybrid": 938,
+      "Recall_micro_feature_model": 0.0365165014,
+      "Recall_macro_feature_model": 0.0400896584,
+      "HitRate_feature_model": 0.0613727951,
+      "CandidateConditionedRecall_feature_model": 0.6364133406,
+      "hits_feature_model": 1164
+    },
+    {
+      "K": 50,
+      "Recall_micro_hybrid": 0.0450181955,
+      "Recall_macro_hybrid": 0.0499971777,
+      "HitRate_hybrid": 0.0731981238,
+      "CandidateConditionedRecall_hybrid": 0.7845817387,
+      "hits_hybrid": 1435,
+      "Recall_micro_feature_model": 0.0498807881,
+      "Recall_macro_feature_model": 0.0542594456,
+      "HitRate_feature_model": 0.0794080729,
+      "CandidateConditionedRecall_feature_model": 0.8693275014,
+      "hits_feature_model": 1590
+    },
+    {
+      "K": 100,
+      "Recall_micro_hybrid": 0.057378592,
+      "Recall_macro_hybrid": 0.0616457625,
+      "HitRate_hybrid": 0.0888551232,
+      "CandidateConditionedRecall_hybrid": 1.0,
+      "hits_hybrid": 1829,
+      "Recall_micro_feature_model": 0.057378592,
+      "Recall_macro_feature_model": 0.0616457625,
+      "HitRate_feature_model": 0.0888551232,
+      "CandidateConditionedRecall_feature_model": 1.0,
+      "hits_feature_model": 1829
+    }
+  ],
+  "test_model_comparison": [
+    {
+      "K": 10,
+      "Recall_micro_hybrid": 0.0207679759,
+      "Recall_micro_feature_model": 0.0265717154,
+      "Recall_micro_lightgbm": 0.026383486,
+      "Recall_micro_deepfm": 0.027105032
+    },
+    {
+      "K": 20,
+      "Recall_micro_hybrid": 0.0294265278,
+      "Recall_micro_feature_model": 0.0365165014,
+      "Recall_micro_lightgbm": 0.036767474,
+      "Recall_micro_deepfm": 0.0377399925
+    },
+    {
+      "K": 50,
+      "Recall_micro_hybrid": 0.0450181955,
+      "Recall_micro_feature_model": 0.0498807881,
+      "Recall_micro_lightgbm": 0.0498807881,
+      "Recall_micro_deepfm": 0.0505395909
+    },
+    {
+      "K": 100,
+      "Recall_micro_hybrid": 0.057378592,
+      "Recall_micro_feature_model": 0.057378592,
+      "Recall_micro_lightgbm": 0.057378592,
+      "Recall_micro_deepfm": 0.057378592
+    }
+  ],
+  "test_scoring_seconds": 7.9665
+}

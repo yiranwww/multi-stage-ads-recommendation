@@ -1,0 +1,16 @@
+feature,importance
+user_last_event_days,2628
+item_last_view_days,2188
+log_item_views,1414
+retrieval_rank,1353
+log_item_unique_viewers,1342
+log_user_views,1155
+log_user_unique_items,916
+log_item_carts,595
+rrf_inverse_rank,507
+log_item_purchases,315
+from_itemcf,108
+from_faiss_fallback,101
+item_view_share,95
+source_count,91
+from_popularity,2

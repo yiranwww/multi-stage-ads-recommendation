@@ -1,0 +1,163 @@
+{
+  "files": [
+    {
+      "file": "events.csv",
+      "rows": 2756101,
+      "columns": [
+        "timestamp",
+        "visitorid",
+        "event",
+        "itemid",
+        "transactionid"
+      ],
+      "observed_chunk_dtypes": {
+        "timestamp": [
+          "int64"
+        ],
+        "visitorid": [
+          "int64"
+        ],
+        "event": [
+          "object"
+        ],
+        "itemid": [
+          "int64"
+        ],
+        "transactionid": [
+          "float64"
+        ]
+      },
+      "missing": {
+        "timestamp": 0,
+        "visitorid": 0,
+        "event": 0,
+        "itemid": 0,
+        "transactionid": 2733644
+      },
+      "exact_duplicate_rows_hash_based": 460,
+      "unique_ids": {
+        "visitorid": 1407580,
+        "event": 3,
+        "itemid": 235061,
+        "transactionid": 17672
+      },
+      "time_start_utc": "2015-05-03T03:00:04.384000+00:00",
+      "time_end_utc": "2015-09-18T02:59:47.788000+00:00",
+      "peak_chunk_memory_mib": 17.78,
+      "file_size_mib": 89.87
+    },
+    {
+      "file": "item_properties_part1.csv",
+      "rows": 10999999,
+      "columns": [
+        "timestamp",
+        "itemid",
+        "property",
+        "value"
+      ],
+      "observed_chunk_dtypes": {
+        "timestamp": [
+          "int64"
+        ],
+        "itemid": [
+          "int64"
+        ],
+        "property": [
+          "object"
+        ],
+        "value": [
+          "object"
+        ]
+      },
+      "missing": {
+        "timestamp": 0,
+        "itemid": 0,
+        "property": 0,
+        "value": 0
+      },
+      "exact_duplicate_rows_hash_based": 0,
+      "unique_ids": {
+        "itemid": 417053,
+        "property": 1097
+      },
+      "time_start_utc": "2015-05-10T03:00:00+00:00",
+      "time_end_utc": "2015-09-13T03:00:00+00:00",
+      "peak_chunk_memory_mib": 28.88,
+      "file_size_mib": 461.88
+    },
+    {
+      "file": "item_properties_part2.csv",
+      "rows": 9275903,
+      "columns": [
+        "timestamp",
+        "itemid",
+        "property",
+        "value"
+      ],
+      "observed_chunk_dtypes": {
+        "timestamp": [
+          "int64"
+        ],
+        "itemid": [
+          "int64"
+        ],
+        "property": [
+          "object"
+        ],
+        "value": [
+          "object"
+        ]
+      },
+      "missing": {
+        "timestamp": 0,
+        "itemid": 0,
+        "property": 0,
+        "value": 0
+      },
+      "exact_duplicate_rows_hash_based": 0,
+      "unique_ids": {
+        "itemid": 417053,
+        "property": 1094
+      },
+      "time_start_utc": "2015-05-10T03:00:00+00:00",
+      "time_end_utc": "2015-09-13T03:00:00+00:00",
+      "peak_chunk_memory_mib": 28.89,
+      "file_size_mib": 389.99
+    },
+    {
+      "file": "category_tree.csv",
+      "rows": 1669,
+      "columns": [
+        "categoryid",
+        "parentid"
+      ],
+      "observed_chunk_dtypes": {
+        "categoryid": [
+          "int64"
+        ],
+        "parentid": [
+          "float64"
+        ]
+      },
+      "missing": {
+        "categoryid": 0,
+        "parentid": 25
+      },
+      "exact_duplicate_rows_hash_based": 0,
+      "unique_ids": {
+        "categoryid": 1669,
+        "parentid": 362
+      },
+      "time_start_utc": null,
+      "time_end_utc": null,
+      "peak_chunk_memory_mib": 0.03,
+      "file_size_mib": 0.01
+    }
+  ],
+  "limitations": [
+    "Hash-based exact duplicate count has negligible collision risk",
+    "Property cross-part overlap not yet exhaustively measured",
+    "Category mapping coverage not yet validated",
+    "Peak chunk memory is not total process peak memory"
+  ]
+}

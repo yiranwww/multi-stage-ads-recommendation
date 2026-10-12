@@ -1,0 +1,125 @@
+{
+  "notebook": "15_fastapi_recommendation_serving",
+  "seed": 42,
+  "split": "test",
+  "environment": {
+    "python": "3.10.15",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "executable": "c:\\Users\\wyr95\\.conda\\envs\\torch\\python.exe"
+  },
+  "architecture": {
+    "retrieval": "precomputed Notebook08 Top-500",
+    "features": "precomputed Notebook09",
+    "lightgbm": "actual model inference",
+    "deepfm": "actual model inference",
+    "mmr_lambda": 0.9,
+    "mmr_pool": 150,
+    "mmr_depth": 100,
+    "service": "FastAPI Uvicorn single worker localhost"
+  },
+  "health": {
+    "status": "ok",
+    "device": "cuda",
+    "users_cached": 3572,
+    "mmr_lambda": 0.9,
+    "retrieval": "precomputed",
+    "features": "precomputed",
+    "real_model_inference": true
+  },
+  "startup_seconds_excluded": 15.126611499999854,
+  "requests": {
+    "total": 60,
+    "warmup": 5,
+    "timed": 55,
+    "sequential": true
+  },
+  "http_latency": {
+    "n": 55,
+    "mean_ms": 23.523101818202782,
+    "p50_ms": 22.947800000110874,
+    "p95_ms": 27.7631900004053,
+    "p99_ms": 35.218977999829804,
+    "max_ms": 36.32289999950444,
+    "sequential_qps": 42.511400398147074
+  },
+  "server_latency": {
+    "n": 55,
+    "mean_ms": 20.586016363636364,
+    "p50_ms": 19.8357,
+    "p95_ms": 24.09848,
+    "p99_ms": 30.71515,
+    "max_ms": 32.1205,
+    "sequential_qps_equivalent": 48.576664000249416
+  },
+  "stage_latency": [
+    {
+      "stage": "deepfm_inference",
+      "n": 55,
+      "mean_ms": 2.7381,
+      "p50_ms": 2.4396,
+      "p95_ms": 4.525549999999999,
+      "p99_ms": 4.982182,
+      "max_ms": 5.0803
+    },
+    {
+      "stage": "deepfm_preprocess",
+      "n": 55,
+      "mean_ms": 6.048205454545452,
+      "p50_ms": 6.0609,
+      "p95_ms": 6.82902,
+      "p99_ms": 8.476546,
+      "max_ms": 8.5765
+    },
+    {
+      "stage": "lgbm_inference",
+      "n": 55,
+      "mean_ms": 2.880563636363636,
+      "p50_ms": 2.678,
+      "p95_ms": 3.7434,
+      "p99_ms": 5.202012,
+      "max_ms": 5.295
+    },
+    {
+      "stage": "lgbm_preprocess",
+      "n": 55,
+      "mean_ms": 4.810630909090909,
+      "p50_ms": 4.5577,
+      "p95_ms": 6.890969999999999,
+      "p99_ms": 7.625444000000001,
+      "max_ms": 8.2472
+    },
+    {
+      "stage": "mmr_greedy",
+      "n": 55,
+      "mean_ms": 4.101996363636364,
+      "p50_ms": 3.8704,
+      "p95_ms": 5.880349999999997,
+      "p99_ms": 6.631638000000001,
+      "max_ms": 6.7263
+    }
+  ],
+  "audit": {
+    "top20_exact_rate": 1.0,
+    "min_candidate_count": 500,
+    "max_candidate_count": 500,
+    "endpoint_validation_passed": true
+  },
+  "outputs": [
+    "notebook15_http_request_samples.csv",
+    "notebook15_serving_parity_audit.csv",
+    "notebook15_stage_samples.csv",
+    "notebook15_stage_latency.csv",
+    "notebook15_endpoint_checks.csv",
+    "notebook15_plots/notebook15_http_latency_cdf.png",
+    "notebook15_plots/notebook15_stage_latency.png"
+  ],
+  "limitations": [
+    "No live retrieval or raw-event feature generation",
+    "All candidates/features precomputed and held in memory",
+    "LightGBM scores computed but not used for candidate pruning; both models score all 500",
+    "Single-process sequential loopback HTTP; not concurrent production load",
+    "Only 55 timed requests by default; percentiles noisy",
+    "Test used for frozen parity and timing, not model selection",
+    "No impression logs, online CTR/CVR, autoscaling, authentication, or deployment claims"
+  ]
+}

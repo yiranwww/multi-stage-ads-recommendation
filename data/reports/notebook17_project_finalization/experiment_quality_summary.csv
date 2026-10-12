@@ -1,0 +1,11 @@
+stage,notebook,split,k,recall_at20,ndcg_at20,hit_rate_at20,ild_at20,category_coverage_at20,note
+Popularity (decayed),4,test,20,0.011930849768687607,,0.023516237402015677,,,Different retrieval/ranking stages; compare with care
+ItemCF (cooccurrence),5,test,20,0.05636717798879961,,0.10358342665173573,,,Different retrieval/ranking stages; compare with care
+SVD,6,test,20,0.015339663988312637,,0.03163493840985442,,,Different retrieval/ranking stages; compare with care
+FAISS IVF nprobe16,7,test,20,0.015339663988312637,,0.03163493840985442,,,Different retrieval/ranking stages; compare with care
+Weighted RRF,8,test,20,0.06671536401266132,,0.12374020156774916,,,Different retrieval/ranking stages; compare with care
+LightGBM Binary,10,test,20,0.0725590455320185,0.05399944226415345,0.13157894736842105,,,Different retrieval/ranking stages; compare with care
+LightGBM LambdaRank,10,test,20,0.06488921353786219,0.04683132541002705,0.12010078387458006,,,Different retrieval/ranking stages; compare with care
+DeepFM,11,test,20,0.07487216946676406,0.05594798043023091,0.13465845464725643,,,Different retrieval/ranking stages; compare with care
+DeepFM + MMR,13,test,20,0.07414170927684441,0.055652322554829714,0.13297872340425532,0.3115400403471036,4.781354904174805,Different retrieval/ranking stages; compare with care
+Cascade Top100 + MMR,16,test,20,0.07572437302167032,0.056088864001873566,0.135498320268757,0.296371920787795,4.32026875699888,Different retrieval/ranking stages; compare with care

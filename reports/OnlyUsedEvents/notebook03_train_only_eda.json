@@ -1,0 +1,53 @@
+{
+  "protocol": {
+    "validation_history_end_exclusive_utc": "2015-08-01",
+    "validation_label_window_start_utc": "2015-08-01",
+    "validation_label_window_end_exclusive_utc": "2015-08-15",
+    "train_only_features": true
+  },
+  "train_stats": {
+    "train_events": 1899029,
+    "train_users": 962528,
+    "train_items": 199689,
+    "train_unique_user_item_pairs": 1472639,
+    "train_user_item_density": 7.661764229553357e-06,
+    "train_users_one_event_pct": 71.19585092589514,
+    "train_items_one_event_pct": 33.93476856511876,
+    "train_user_event_median": 1.0,
+    "train_user_event_p99": 13.0,
+    "train_item_event_median": 3.0
+  },
+  "train_popularity": {
+    "top_1pct_interaction_share": 0.2180324787035901,
+    "top_10pct_interaction_share": 0.6220442131215479
+  },
+  "validation_cohorts": {
+    "all_future_view_pairs": {
+      "pairs": 200935,
+      "users": 145763,
+      "items": 73730
+    },
+    "warm_user_pairs": {
+      "pairs": 28634,
+      "users": 13329,
+      "items": 19240
+    },
+    "warm_user_warm_item_pairs": {
+      "pairs": 26155,
+      "users": 12689,
+      "items": 17111
+    }
+  },
+  "validation_warm_users_by_history_bucket": {
+    "1": 5969,
+    "2-5": 4851,
+    "6-20": 1884,
+    ">20": 625
+  },
+  "validation_positive_pairs_by_history_bucket": {
+    "1": 8608,
+    "2-5": 7901,
+    "6-20": 4374,
+    ">20": 7751
+  }
+}

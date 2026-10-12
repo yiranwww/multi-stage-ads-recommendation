@@ -1,0 +1,69 @@
+{
+  "method": "local CPU per-user conditional LightGBM-to-DeepFM microbenchmark",
+  "protocol": "September cutoff; frozen model artifacts; precomputed candidate and historical features",
+  "sampled_users": 1000,
+  "top_n": 20,
+  "candidate_pool": 100,
+  "model_reproduction_max_abs_error": 1.184509277329937e-06,
+  "offline_feature_build_seconds": 2.9250111000001198,
+  "latency_ms": {
+    "20": {
+      "users": 1000,
+      "lightgbm_ms_p50": 2.2529000000000003,
+      "lightgbm_ms_p95": 3.211604999999999,
+      "lightgbm_ms_mean": 2.3730432,
+      "gate_ms_p50": 0.0123,
+      "gate_ms_p95": 0.0207,
+      "gate_ms_mean": 0.013766400000000002,
+      "deepfm_ms_p50": 0.60255,
+      "deepfm_ms_p95": 0.9822599999999999,
+      "deepfm_ms_mean": 0.6482692,
+      "sort_ms_p50": 0.0181,
+      "sort_ms_p95": 0.0286,
+      "sort_ms_mean": 0.019501800000000003,
+      "total_ms_p50": 2.91125,
+      "total_ms_p95": 4.10809,
+      "total_ms_mean": 3.0545806
+    },
+    "100": {
+      "users": 1000,
+      "lightgbm_ms_p50": 2.2346500000000002,
+      "lightgbm_ms_p95": 3.2762949999999997,
+      "lightgbm_ms_mean": 2.335792,
+      "gate_ms_p50": 0.0121,
+      "gate_ms_p95": 0.021604999999999996,
+      "gate_ms_mean": 0.0140821,
+      "deepfm_ms_p50": 0.73735,
+      "deepfm_ms_p95": 1.13914,
+      "deepfm_ms_mean": 0.7813241,
+      "sort_ms_p50": 0.0236,
+      "sort_ms_p95": 0.0368,
+      "sort_ms_mean": 0.025816600000000002,
+      "total_ms_p50": 3.0304,
+      "total_ms_p95": 4.318779999999999,
+      "total_ms_mean": 3.1570148
+    }
+  },
+  "paired_mean_total_saving_ms": 0.1024342,
+  "fraction_users_top20_faster": 0.536,
+  "hardware": {
+    "platform": "Windows-10-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 154 Stepping 3, GenuineIntel",
+    "torch_threads": 4
+  },
+  "excluded": [
+    "retrieval generation",
+    "feature store lookup / historical feature computation",
+    "model loading",
+    "serialization",
+    "network",
+    "MMR diversity re-ranking"
+  ],
+  "caveats": [
+    "This is local CPU microbenchmark, not production p95",
+    "One-user-at-a-time CPU inference, no concurrency or batching across users",
+    "All 100 candidates receive LightGBM; only 20 receive DeepFM in gated run",
+    "Top20 and Top100 measured sequentially; system load affects timing",
+    "RetailRocket has no ad impressions or auction data"
+  ]
+}

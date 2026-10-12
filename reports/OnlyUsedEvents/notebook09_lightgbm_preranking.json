@@ -1,0 +1,139 @@
+{
+  "method": "LightGBM sampled-implicit-negative binary candidate preranker",
+  "protocol": "Aug warm-user cohort, user-disjoint 80/20 holdout; refit on full Aug; evaluate Sep once",
+  "caveats": [
+    "No impression logs; unobserved candidates are not confirmed negatives",
+    "Candidate pool fixed to Notebook 08 Top-100",
+    "Full August validation metrics are in-sample after final refit and are not reported"
+  ],
+  "features": [
+    "retrieval_rank",
+    "rrf_inverse_rank",
+    "from_itemcf",
+    "from_faiss_fallback",
+    "from_popularity",
+    "source_count",
+    "log_item_views",
+    "log_item_unique_viewers",
+    "log_user_views",
+    "log_user_unique_items",
+    "user_last_event_days",
+    "item_last_view_days",
+    "item_view_share",
+    "log_item_carts",
+    "log_item_purchases"
+  ],
+  "best_iteration": 427,
+  "train_rows": 214772,
+  "train_positives": 1512,
+  "validation_holdout_users": 2666,
+  "validation_holdout": [
+    {
+      "K": 10,
+      "Recall_micro_hybrid": 0.025739531310026893,
+      "Recall_macro_hybrid": 0.026255539908953265,
+      "HitRate_hybrid": 0.0450112528132033,
+      "CandidateConditionedRecall_hybrid": 0.35638297872340424,
+      "hits_hybrid": 134,
+      "Recall_micro_lightgbm": 0.032270457164809835,
+      "Recall_macro_lightgbm": 0.03246587496322833,
+      "HitRate_lightgbm": 0.05401350337584396,
+      "CandidateConditionedRecall_lightgbm": 0.44680851063829785,
+      "hits_lightgbm": 168
+    },
+    {
+      "K": 20,
+      "Recall_micro_hybrid": 0.03803303880138302,
+      "Recall_macro_hybrid": 0.03814920682673546,
+      "HitRate_hybrid": 0.06301575393848462,
+      "CandidateConditionedRecall_hybrid": 0.526595744680851,
+      "hits_hybrid": 198,
+      "Recall_micro_lightgbm": 0.04610065309258548,
+      "Recall_macro_lightgbm": 0.04540153111526843,
+      "HitRate_lightgbm": 0.07164291072768192,
+      "CandidateConditionedRecall_lightgbm": 0.6382978723404256,
+      "hits_lightgbm": 240
+    },
+    {
+      "K": 50,
+      "Recall_micro_hybrid": 0.05455243949289282,
+      "Recall_macro_hybrid": 0.051330325633931,
+      "HitRate_hybrid": 0.08177044261065267,
+      "CandidateConditionedRecall_hybrid": 0.7553191489361702,
+      "hits_hybrid": 284,
+      "Recall_micro_lightgbm": 0.06146753745678064,
+      "Recall_macro_lightgbm": 0.05691571949223868,
+      "HitRate_lightgbm": 0.08927231807951988,
+      "CandidateConditionedRecall_lightgbm": 0.851063829787234,
+      "hits_lightgbm": 320
+    },
+    {
+      "K": 100,
+      "Recall_micro_hybrid": 0.07222435651171726,
+      "Recall_macro_hybrid": 0.06556542541688833,
+      "HitRate_hybrid": 0.1005251312828207,
+      "CandidateConditionedRecall_hybrid": 1.0,
+      "hits_hybrid": 376,
+      "Recall_micro_lightgbm": 0.07222435651171726,
+      "Recall_macro_lightgbm": 0.06556542541688833,
+      "HitRate_lightgbm": 0.1005251312828207,
+      "CandidateConditionedRecall_lightgbm": 1.0,
+      "hits_lightgbm": 376
+    }
+  ],
+  "test": [
+    {
+      "K": 10,
+      "Recall_micro_hybrid": 0.020767975906638224,
+      "Recall_macro_hybrid": 0.02406704348185573,
+      "HitRate_hybrid": 0.037590011230759064,
+      "CandidateConditionedRecall_hybrid": 0.36194641880809186,
+      "hits_hybrid": 662,
+      "Recall_micro_lightgbm": 0.02638348600828209,
+      "Recall_macro_lightgbm": 0.030129176584413588,
+      "HitRate_lightgbm": 0.047631631102596286,
+      "CandidateConditionedRecall_lightgbm": 0.4598141060688901,
+      "hits_lightgbm": 841
+    },
+    {
+      "K": 20,
+      "Recall_micro_hybrid": 0.029426527795206426,
+      "Recall_macro_hybrid": 0.033581285734440726,
+      "HitRate_hybrid": 0.051132985400013216,
+      "CandidateConditionedRecall_hybrid": 0.512848551120831,
+      "hits_hybrid": 938,
+      "Recall_micro_lightgbm": 0.0367674739616012,
+      "Recall_macro_lightgbm": 0.04055647595223413,
+      "HitRate_lightgbm": 0.06223161788993856,
+      "CandidateConditionedRecall_lightgbm": 0.640787315472936,
+      "hits_lightgbm": 1172
+    },
+    {
+      "K": 50,
+      "Recall_micro_hybrid": 0.04501819550759192,
+      "Recall_macro_hybrid": 0.049997177731414905,
+      "HitRate_hybrid": 0.07319812380260289,
+      "CandidateConditionedRecall_hybrid": 0.7845817386550027,
+      "hits_hybrid": 1435,
+      "Recall_micro_lightgbm": 0.04988078805370812,
+      "Recall_macro_lightgbm": 0.0543677113870658,
+      "HitRate_lightgbm": 0.0798044526656537,
+      "CandidateConditionedRecall_lightgbm": 0.8693275013668671,
+      "hits_lightgbm": 1590
+    },
+    {
+      "K": 100,
+      "Recall_micro_hybrid": 0.057378592044171166,
+      "Recall_macro_hybrid": 0.061645762543949933,
+      "HitRate_hybrid": 0.0888551232080333,
+      "CandidateConditionedRecall_hybrid": 1.0,
+      "hits_hybrid": 1829,
+      "Recall_micro_lightgbm": 0.057378592044171166,
+      "Recall_macro_lightgbm": 0.061645762543949933,
+      "HitRate_lightgbm": 0.0888551232080333,
+      "CandidateConditionedRecall_lightgbm": 1.0,
+      "hits_lightgbm": 1829
+    }
+  ],
+  "test_scoring_seconds": 4.853924400002143
+}
